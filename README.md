@@ -9,3 +9,5 @@ When a customer makes a purchase, they receive a prompt email notification confi
 You can access <a href="https://miro.com/app/board/uXjVNdfSw8k=/?share_link_id=981039779858" target="_blank">here</a>.
 
 # Domain Storytelling - Diagrams
+
+# Definition of domains
