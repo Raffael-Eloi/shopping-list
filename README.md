@@ -6,5 +6,6 @@ When a customer rates a product, their feedback is displayed for other users who
 When a customer makes a purchase, they receive a prompt email notification confirming the details of their order, ensuring a seamless shopping experience. Additionally, our inventory management feature empowers the store manager to stay informed about stock levels. They receive email alerts when a product is running low, allowing for timely restocking and ensuring that customers always find their desired items in stock.<br>
 
 # Event Storming
+You can access <a href="https://miro.com/app/board/uXjVNdfSw8k=/?share_link_id=981039779858" target="_blank">here</a>.
 
 # Domain Storytelling - Diagrams
