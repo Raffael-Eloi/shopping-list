@@ -1,4 +1,8 @@
-﻿using Domain.Contracts.Repositories;
+﻿using Application.Contracts;
+using Application.DTO;
+using Application.Models;
+using Application.Services;
+using Domain.Contracts.Repositories;
 using Moq;
 
 namespace Application.Tests.Services
@@ -31,7 +35,7 @@ namespace Application.Tests.Services
 
             #region Act(When)
 
-            ProductResponse response = await productWriteService.Add(addProductDTO);
+            ProductResponse response = await productWriteService.AddAsync(addProductDTO);
 
             #endregion
 
