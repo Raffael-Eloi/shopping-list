@@ -17,19 +17,24 @@ namespace Application.Services
 
         public async Task<ProductResponse> AddAsync(RequestProductDTO addProductDTO)
         {
-            Product product = new()
+            Product product = CreateProduct(addProductDTO);
+
+            Guid productId = await _productRepository.Add(product);
+
+            return new ProductResponse
+            {
+                ProductId = productId
+            };
+        }
+
+        private static Product CreateProduct(RequestProductDTO addProductDTO)
+        {
+            return new()
             {
                 Name = addProductDTO.Name,
                 Description = addProductDTO.Description,
                 Price = addProductDTO.Price,
                 Quantity = addProductDTO.Quantity,
-            };
-
-            Guid productId = await _productRepository.Add(product);
-
-            return new ProductResponse 
-            { 
-                ProductId = productId 
             };
         }
     }
