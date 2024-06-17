@@ -1,8 +1,8 @@
-﻿using Application.Services;
-using Moq;
+﻿using Moq;
 using ShoppingList.Application.Contracts;
 using ShoppingList.Application.DTO;
 using ShoppingList.Application.Models;
+using ShoppingList.Application.UseCases;
 using ShoppingList.Domain.Contracts.Repositories;
 
 namespace ShoppingList.Application.Tetsts.UseCases;
