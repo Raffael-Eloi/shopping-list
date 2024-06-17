@@ -9,9 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "src\Domain\Domain
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Application", "1 - Application", "{4607D323-C767-4257-AD55-8ECFF0E178A8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "src\Application\Application.csproj", "{9465B634-C8FF-436A-A9C1-A0FE22F9246D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingList.Application", "src\Application\ShoppingList.Application.csproj", "{9465B634-C8FF-436A-A9C1-A0FE22F9246D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingList.Application.Tetsts", "tests\ShoppingList.Application.Tetsts\ShoppingList.Application.Tetsts.csproj", "{CD84FCC5-DD46-4EA4-9B7A-3180C0F4A453}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingList.Application.Tetsts", "tests\ShoppingList.Application.Tetsts\ShoppingList.Application.Tetsts.csproj", "{CD84FCC5-DD46-4EA4-9B7A-3180C0F4A453}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
