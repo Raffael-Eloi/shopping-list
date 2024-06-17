@@ -1,5 +1,5 @@
-﻿using Application.DTO;
-using Application.Models;
+﻿using ShoppingList.Application.DTO;
+using ShoppingList.Application.Models;
 
 namespace ShoppingList.Application.Contracts;
 

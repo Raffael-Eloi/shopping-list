@@ -1,11 +1,11 @@
-﻿using Application.DTO;
-using Application.Models;
-using Application.Services;
-using Domain.Contracts.Repositories;
+﻿using Application.Services;
 using Moq;
 using ShoppingList.Application.Contracts;
+using ShoppingList.Application.DTO;
+using ShoppingList.Application.Models;
+using ShoppingList.Domain.Contracts.Repositories;
 
-namespace Application.Tests.UseCases;
+namespace ShoppingList.Application.Tetsts.UseCases;
 
 internal class AddProductShould
 {

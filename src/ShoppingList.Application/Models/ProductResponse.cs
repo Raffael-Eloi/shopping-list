@@ -1,9 +1,8 @@
 ﻿using Flunt.Notifications;
 
-namespace Application.Models
+namespace ShoppingList.Application.Models;
+
+public class ProductResponse : Notifiable<Notification>
 {
-    public class ProductResponse : Notifiable<Notification>
-    {
-        public Guid? ProductId { get; set; }
-    }
+    public Guid? ProductId { get; set; }
 }

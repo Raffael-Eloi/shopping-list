@@ -1,6 +1,5 @@
-﻿namespace Domain.Entities
+﻿namespace ShoppingList.Domain.Entities;
+
+public class Review
 {
-    public class Review
-    {
-    }
 }

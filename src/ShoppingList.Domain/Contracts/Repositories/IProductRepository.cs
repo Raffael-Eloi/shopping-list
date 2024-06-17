@@ -1,9 +1,8 @@
-﻿using Domain.Entities;
+﻿using ShoppingList.Domain.Entities;
 
-namespace Domain.Contracts.Repositories
+namespace ShoppingList.Domain.Contracts.Repositories;
+
+public interface IProductRepository
 {
-    public interface IProductRepository
-    {
-        Task<Guid> Add(Product product);
-    }
+    Task<Guid> Add(Product product);
 }
