@@ -6,11 +6,11 @@ using Domain.Entities;
 
 namespace Application.Services
 {
-    public class ProductWriteService : IProductWriteService
+    public class AddProduct : IAddProduct
     {
         private readonly IProductRepository _productRepository;
 
-        public ProductWriteService(IProductRepository productRepository)
+        public AddProduct(IProductRepository productRepository)
         {
             _productRepository = productRepository;
         }

@@ -3,7 +3,7 @@ using Application.Models;
 
 namespace Application.Contracts
 {
-    public interface IProductWriteService
+    public interface IAddProduct
     {
         Task<ProductResponse> AddAsync(RequestProductDTO addProductDTO);
     }
