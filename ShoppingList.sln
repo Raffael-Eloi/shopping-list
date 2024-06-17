@@ -5,7 +5,7 @@ VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Domain", "2 - Domain", "{E2DD306A-152F-4F8E-AFC1-0811FBE5F50B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "src\Domain\Domain.csproj", "{D0670EBE-B757-4DA9-89A7-50AD2714CC1C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingList.Domain", "src\Domain\ShoppingList.Domain.csproj", "{D0670EBE-B757-4DA9-89A7-50AD2714CC1C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Application", "1 - Application", "{4607D323-C767-4257-AD55-8ECFF0E178A8}"
 EndProject
