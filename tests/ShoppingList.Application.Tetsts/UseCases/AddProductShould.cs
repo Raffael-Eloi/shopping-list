@@ -1,9 +1,9 @@
-﻿using Application.Contracts;
-using Application.DTO;
+﻿using Application.DTO;
 using Application.Models;
 using Application.Services;
 using Domain.Contracts.Repositories;
 using Moq;
+using ShoppingList.Application.Contracts;
 
 namespace Application.Tests.UseCases;
 

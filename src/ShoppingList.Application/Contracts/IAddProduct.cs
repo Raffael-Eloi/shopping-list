@@ -1,10 +1,9 @@
 ﻿using Application.DTO;
 using Application.Models;
 
-namespace Application.Contracts
+namespace ShoppingList.Application.Contracts;
+
+public interface IAddProduct
 {
-    public interface IAddProduct
-    {
-        Task<ProductResponse> AddAsync(RequestProductDTO addProductDTO);
-    }
+    Task<ProductResponse> AddAsync(RequestProductDTO addProductDTO);
 }

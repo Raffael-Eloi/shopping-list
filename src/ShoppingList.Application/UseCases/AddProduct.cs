@@ -1,8 +1,8 @@
-﻿using Application.Contracts;
-using Application.DTO;
+﻿using Application.DTO;
 using Application.Models;
 using Domain.Contracts.Repositories;
 using Domain.Entities;
+using ShoppingList.Application.Contracts;
 
 namespace ShoppingList.Application.UseCases;
 
