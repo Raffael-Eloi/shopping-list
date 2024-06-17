@@ -1,26 +1,24 @@
-﻿using System.Collections.ObjectModel;
-
-namespace ShoppingList.Domain.Entities;
+﻿namespace ShoppingList.Domain.Entities;
 
 public class Product
 {
     public Product()
     {
         Id = Guid.NewGuid();
-        Reviews = new Collection<Review>();
+        Name = string.Empty;
+        Description = string.Empty;
+        Reviews = [];
     }
 
     public Guid Id { get; set; }
 
-    public string Name { get; set; } = string.Empty;
+    public string Name { get; set; }
 
     public decimal Price { get; set; }
 
-    public string Description { get; set; } = string.Empty;
+    public string Description { get; set; }
 
     public int Quantity { get; set; }
-
-    public Promotion? Promotion { get; set; }
 
     public ICollection<Review> Reviews { get; set; }
 }
