@@ -29,13 +29,13 @@ internal class AddProductShould
 
         var productRepositoryMock = new Mock<IProductRepository>();
 
-        IAddProduct productWriteService = new AddProduct(productRepositoryMock.Object);
+        IAddProduct addProduct = new AddProduct(productRepositoryMock.Object);
 
         #endregion
 
         #region Act(When)
 
-        ProductResponse response = await productWriteService.AddAsync(addProductDTO);
+        ProductResponse response = await addProduct.AddAsync(addProductDTO);
 
         #endregion
 
@@ -48,6 +48,7 @@ internal class AddProductShould
             Assert.That(response.IsValid, Is.True);
             Assert.That(response.ProductId, Is.Not.Null);
         });
+
         #endregion
     }
 }
