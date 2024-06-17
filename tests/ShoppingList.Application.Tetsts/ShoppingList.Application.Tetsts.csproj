@@ -19,8 +19,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Application\ShoppingList.Application.csproj" />
     <ProjectReference Include="..\..\src\Domain\Domain.csproj" />
+    <ProjectReference Include="..\..\src\ShoppingList.Application\ShoppingList.Application.csproj" />
   </ItemGroup>
 
   <ItemGroup>
