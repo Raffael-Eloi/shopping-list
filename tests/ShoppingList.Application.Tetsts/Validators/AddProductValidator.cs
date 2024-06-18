@@ -1,13 +1,14 @@
-﻿using FluentValidation.Results;
+﻿using FluentValidation;
 using ShoppingList.Application.Models;
 
-namespace ShoppingList.Application.Tetsts.Validators
+namespace ShoppingList.Application.Tetsts.Validators;
+
+internal class AddProductValidator : AbstractValidator<AddProductRequest>
 {
-    internal class AddProductValidator
+    public AddProductValidator()
     {
-        internal ValidationResult Validate(AddProductRequest request)
-        {
-            throw new NotImplementedException();
-        }
+        RuleFor(request => request.Name)
+            .NotEmpty()
+            .WithMessage("'Name' must not be empty.");
     }
 }
