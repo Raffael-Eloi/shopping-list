@@ -1,6 +1,7 @@
 ﻿using FluentAssertions;
 using FluentValidation.Results;
 using ShoppingList.Application.Models;
+using ShoppingList.Application.Validators;
 
 namespace ShoppingList.Application.Tetsts.Validators;
 
