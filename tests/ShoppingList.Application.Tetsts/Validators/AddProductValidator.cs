@@ -10,5 +10,9 @@ internal class AddProductValidator : AbstractValidator<AddProductRequest>
         RuleFor(request => request.Name)
             .NotEmpty()
             .WithMessage("'Name' must not be empty.");
+
+        RuleFor(request => request.Price)
+            .GreaterThan(0)
+            .WithMessage("'Price' must be greater than 0.");
     }
 }

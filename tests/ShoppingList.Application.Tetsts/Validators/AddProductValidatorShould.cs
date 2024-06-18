@@ -72,7 +72,7 @@ internal class AddProductValidatorShould
 
         result.IsValid.Should().BeFalse();
 
-        result.Errors.First().ErrorMessage.Should().Be("'Price' must not be empty.");
+        result.Errors.First().ErrorMessage.Should().Be("'Price' must be greater than 0.");
 
         #endregion
     }
