@@ -1,4 +1,4 @@
-﻿using Moq;
+﻿using FakeItEasy;
 using ShoppingList.Application.Contracts;
 using ShoppingList.Application.DTO;
 using ShoppingList.Application.Models;
@@ -27,9 +27,9 @@ internal class AddProductShould
             Quantity = quantity
         };
 
-        var productRepositoryMock = new Mock<IProductRepository>();
+        var productRepositoryMock = A.Fake<IProductRepository>();
 
-        IAddProduct addProduct = new AddProduct(productRepositoryMock.Object);
+        IAddProduct addProduct = new AddProduct(productRepositoryMock);
 
         #endregion
 
