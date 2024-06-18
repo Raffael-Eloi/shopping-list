@@ -68,11 +68,33 @@ internal class AddProductValidatorShould
 
         #region Assert(Then)
 
-        result.Should().NotBeNull();
-
         result.IsValid.Should().BeFalse();
 
         result.Errors.First().ErrorMessage.Should().Be("'Price' must be greater than 0.");
+
+        #endregion
+    }
+
+    [TestCase(1, true)]
+    [TestCase(0, false)]
+    [TestCase(-1, false)]
+    public void Validate_When_Price_Is_Invalid(decimal price, bool expectedValidationResult)
+    {
+        #region Arrange(Given)
+
+        request.Price = price;
+
+        #endregion
+
+        #region Act(When)
+
+        ValidationResult result = validator.Validate(request);
+
+        #endregion
+
+        #region Assert(Then)
+
+        result.IsValid.Should().Be(expectedValidationResult);
 
         #endregion
     }
