@@ -1,7 +1,6 @@
 ﻿using FakeItEasy;
 using FluentAssertions;
 using ShoppingList.Application.Contracts;
-using ShoppingList.Application.DTO;
 using ShoppingList.Application.Models;
 using ShoppingList.Application.UseCases;
 using ShoppingList.Domain.Contracts.Repositories;
@@ -15,7 +14,7 @@ internal class AddProductShould
 
     private IAddProduct addProduct;
     
-    private RequestProductDTO request;
+    private AddProductRequest request;
 
     [SetUp]
     public void Setup()
@@ -24,7 +23,7 @@ internal class AddProductShould
 
         addProduct = new AddProduct(productRepositoryMock);
 
-        request = new RequestProductDTO();
+        request = new AddProductRequest();
     }
 
     [Test]
@@ -36,7 +35,7 @@ internal class AddProductShould
 
         #region Act(When)
 
-        ProductResponse response = await addProduct.AddAsync(request);
+        AddProductResponse response = await addProduct.AddAsync(request);
 
         #endregion
 
@@ -73,7 +72,7 @@ internal class AddProductShould
 
         #region Act(When)
 
-        ProductResponse response = await addProduct.AddAsync(request);
+        AddProductResponse response = await addProduct.AddAsync(request);
 
         #endregion
 

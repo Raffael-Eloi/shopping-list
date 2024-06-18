@@ -2,7 +2,7 @@
 
 namespace ShoppingList.Application.Models;
 
-public class ProductResponse : Notifiable<Notification>
+public class AddProductResponse : Notifiable<Notification>
 {
     public Guid? ProductId { get; set; }
 }
