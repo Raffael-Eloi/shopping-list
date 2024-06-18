@@ -1,4 +1,5 @@
 ﻿using FakeItEasy;
+using FluentAssertions;
 using ShoppingList.Application.Contracts;
 using ShoppingList.Application.DTO;
 using ShoppingList.Application.Models;
@@ -10,7 +11,7 @@ namespace ShoppingList.Application.Tetsts.UseCases;
 internal class AddProductShould
 {
     [Test]
-    public async Task Add_New_Product()
+    public async Task Add_Product()
     {
         #region Arrange(Given)
 
@@ -41,13 +42,11 @@ internal class AddProductShould
 
         #region Assert(Then)
 
-        Assert.That(response, Is.Not.Null);
+        response.Should().NotBeNull();
+        
+        response.IsValid.Should().BeTrue();
 
-        Assert.Multiple(() =>
-        {
-            Assert.That(response.IsValid, Is.True);
-            Assert.That(response.ProductId, Is.Not.Null);
-        });
+        response.ProductId.Should().NotBeNull();
 
         #endregion
     }
