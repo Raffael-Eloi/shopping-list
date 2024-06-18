@@ -17,7 +17,8 @@ internal class AddProductValidatorShould
 
         request = new AddProductRequest
         {
-            Name = "name"
+            Name = "name",
+            Price = 1
         };
     }
 
@@ -54,7 +55,7 @@ internal class AddProductValidatorShould
     {
         #region Arrange(Given)
 
-        decimal invalidPrice = 0;
+        decimal invalidPrice = -1;
 
         request.Price = invalidPrice;
 
@@ -95,6 +96,32 @@ internal class AddProductValidatorShould
         #region Assert(Then)
 
         result.IsValid.Should().Be(expectedValidationResult);
+
+        #endregion
+    }
+
+    [Test]
+    public void Return_Notification_When_Quantity_Is_Invalid()
+    {
+        #region Arrange(Given)
+
+        int invalidQuantity = -1;
+
+        request.Quantity = invalidQuantity;
+
+        #endregion
+
+        #region Act(When)
+
+        ValidationResult result = validator.Validate(request);
+
+        #endregion
+
+        #region Assert(Then)
+
+        result.IsValid.Should().BeFalse();
+
+        result.Errors.First().ErrorMessage.Should().Be("'Quantity' must be greater than 0.");
 
         #endregion
     }
