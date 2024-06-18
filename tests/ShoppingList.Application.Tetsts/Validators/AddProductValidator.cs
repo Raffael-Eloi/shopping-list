@@ -14,5 +14,9 @@ internal class AddProductValidator : AbstractValidator<AddProductRequest>
         RuleFor(request => request.Price)
             .GreaterThan(0)
             .WithMessage("'Price' must be greater than 0.");
+        
+        RuleFor(request => request.Quantity)
+            .GreaterThan(0)
+            .WithMessage("'Quantity' must be greater than 0.");
     }
 }
