@@ -24,7 +24,7 @@ internal class GetProductShould
         A.CallTo(() => repositoryMock.GetById(productId))
             .Returns(product);
 
-        IGetProduct getProduct = new GetProduct();
+        IGetProduct getProduct = new GetProduct(repositoryMock);
 
         #endregion
 
