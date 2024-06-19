@@ -13,7 +13,7 @@ internal class GetProductValidatorShould
 
         Product? unexistingProduct = null;
 
-        GetProductValidator validator = new GetProductValidator();
+        IGetProductValidator validator = new GetProductValidator();
 
         #endregion
 
@@ -27,7 +27,7 @@ internal class GetProductValidatorShould
 
         result.IsValid.Should().BeFalse();
 
-        result.Errors.First().ErrorMessage.Should().Be("'Price' must be greater than 0.");
+        result.Errors.First().ErrorMessage.Should().Be("Product not found.");
 
         #endregion
     }

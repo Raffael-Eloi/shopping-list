@@ -1,13 +1,20 @@
 ﻿using FluentValidation.Results;
 using ShoppingList.Domain.Entities;
 
-namespace ShoppingList.Application.Tetsts.Validators
+namespace ShoppingList.Application.Tetsts.Validators;
+
+public class GetProductValidator : IGetProductValidator
 {
-    internal class GetProductValidator
+    public ValidationResult Validate(Product? product)
     {
-        internal ValidationResult Validate(Product? unexistingProduct)
+        if (product is null)
         {
-            throw new NotImplementedException();
+            return new ValidationResult(new List<ValidationFailure>
+            {
+                new ValidationFailure("Product", "Product not found.")
+            });
         }
+
+        return new ValidationResult();
     }
 }
