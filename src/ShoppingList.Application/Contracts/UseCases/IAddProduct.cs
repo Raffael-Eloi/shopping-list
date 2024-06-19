@@ -1,6 +1,6 @@
 ﻿using ShoppingList.Application.Models;
 
-namespace ShoppingList.Application.Contracts;
+namespace ShoppingList.Application.Contracts.UseCases;
 
 public interface IAddProduct
 {

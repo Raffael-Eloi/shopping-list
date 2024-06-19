@@ -1,4 +1,4 @@
-﻿using ShoppingList.Application.Contracts;
+﻿using ShoppingList.Application.Contracts.UseCases;
 using ShoppingList.Application.Models;
 using ShoppingList.Domain.Contracts.Repositories;
 using ShoppingList.Domain.Entities;

@@ -1,6 +1,8 @@
 ﻿using FakeItEasy;
 using FluentAssertions;
-using ShoppingList.Application.Contracts;
+using FluentValidation.Results;
+using ShoppingList.Application.Contracts.UseCases;
+using ShoppingList.Application.Contracts.Validators;
 using ShoppingList.Application.Models;
 using ShoppingList.Application.UseCases;
 using ShoppingList.Domain.Contracts.Repositories;
@@ -11,7 +13,9 @@ namespace ShoppingList.Application.Tetsts.UseCases;
 internal class AddProductShould
 {
     private IProductRepository productRepositoryMock;
-
+    
+    private IValidator validatorMock;
+    
     private IAddProduct addProduct;
     
     private AddProductRequest request;
@@ -20,6 +24,8 @@ internal class AddProductShould
     public void Setup()
     {
         productRepositoryMock = A.Fake<IProductRepository>();
+
+        validatorMock = A.Fake<IValidator>();
 
         addProduct = new AddProduct(productRepositoryMock);
 
@@ -88,6 +94,37 @@ internal class AddProductShould
                         product.Quantity == quantity
                     )))
             .MustHaveHappenedOnceExactly();
+
+        #endregion
+    }
+    
+    [Test]
+    public async Task Validate_When_Add_Product()
+    {
+        #region Arrange(Given)
+
+        IEnumerable<ValidationFailure> errors = [
+            new ValidationFailure("Name", "'Name' must not be empty.")
+        ];
+
+        var invalidResult = new ValidationResult(errors);
+
+        A.CallTo(() => validatorMock.Validate(request))
+            .Returns(invalidResult);
+
+        #endregion
+
+        #region Act(When)
+
+        AddProductResponse response = await addProduct.AddAsync(request);
+
+        #endregion
+
+        #region Assert(Then)
+
+        A.CallTo(() => 
+            productRepositoryMock.Add(A<Product>._))
+            .MustNotHaveHappened();
 
         #endregion
     }

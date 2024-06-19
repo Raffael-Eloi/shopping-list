@@ -3,7 +3,7 @@ using ShoppingList.Application.Models;
 
 namespace ShoppingList.Application.Validators;
 
-public class AddProductValidator : AbstractValidator<AddProductRequest>
+public class AddProductValidator : AbstractValidator<AddProductRequest>, IValidator
 {
     public AddProductValidator()
     {
