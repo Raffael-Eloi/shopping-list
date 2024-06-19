@@ -1,8 +1,22 @@
-﻿using Flunt.Notifications;
+﻿using FluentValidation.Results;
 
 namespace ShoppingList.Application.Models;
 
-public class AddProductResponse : Notifiable<Notification>
+public class AddProductResponse
 {
+    public AddProductResponse()
+    {
+        Errors = [];
+    }
+    
+    public AddProductResponse(IEnumerable<ValidationFailure> errors)
+    {
+        Errors = errors;
+    }
+    
     public Guid? ProductId { get; set; }
+
+    public bool IsValid => !Errors.Any();
+
+    public IEnumerable<ValidationFailure> Errors { get; set; }
 }

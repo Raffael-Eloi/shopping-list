@@ -1,17 +1,28 @@
-﻿using ShoppingList.Application.Contracts.UseCases;
+﻿using FluentValidation.Results;
+using ShoppingList.Application.Contracts.UseCases;
+using ShoppingList.Application.Contracts.Validators;
 using ShoppingList.Application.Models;
 using ShoppingList.Domain.Contracts.Repositories;
 using ShoppingList.Domain.Entities;
 
 namespace ShoppingList.Application.UseCases;
 
-public class AddProduct(IProductRepository productRepository) : IAddProduct
+public class AddProduct(
+    IProductRepository repository,
+    IValidator validator) : IAddProduct
 {
-    public async Task<AddProductResponse> AddAsync(AddProductRequest addProductDTO)
+    public async Task<AddProductResponse> AddAsync(AddProductRequest request)
     {
-        Product product = CreateProduct(addProductDTO);
+        ValidationResult result = validator.Validate(request);
 
-        Guid productId = await productRepository.Add(product);
+        if (!result.IsValid)
+        {
+            return new AddProductResponse(result.Errors);
+        }
+
+        Product product = CreateProduct(request);
+
+        Guid productId = await repository.Add(product);
 
         return new AddProductResponse
         {

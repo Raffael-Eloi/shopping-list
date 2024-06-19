@@ -27,9 +27,14 @@ internal class AddProductShould
 
         validatorMock = A.Fake<IValidator>();
 
-        addProduct = new AddProduct(productRepositoryMock);
+        addProduct = new AddProduct(
+            productRepositoryMock,
+            validatorMock);
 
         request = new AddProductRequest();
+
+        A.CallTo(() => validatorMock.Validate(request))
+        .Returns(new ValidationResult());
     }
 
     [Test]
@@ -125,6 +130,8 @@ internal class AddProductShould
         A.CallTo(() => 
             productRepositoryMock.Add(A<Product>._))
             .MustNotHaveHappened();
+
+        response.IsValid.Should().BeFalse();
 
         #endregion
     }

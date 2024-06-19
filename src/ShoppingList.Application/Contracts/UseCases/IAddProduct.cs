@@ -4,5 +4,5 @@ namespace ShoppingList.Application.Contracts.UseCases;
 
 public interface IAddProduct
 {
-    Task<AddProductResponse> AddAsync(AddProductRequest addProductDTO);
+    Task<AddProductResponse> AddAsync(AddProductRequest request);
 }
