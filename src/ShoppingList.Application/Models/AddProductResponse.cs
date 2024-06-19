@@ -9,11 +9,6 @@ public class AddProductResponse
         Errors = [];
     }
     
-    public AddProductResponse(IEnumerable<ValidationFailure> errors)
-    {
-        Errors = errors;
-    }
-    
     public Guid? ProductId { get; set; }
 
     public bool IsValid => !Errors.Any();

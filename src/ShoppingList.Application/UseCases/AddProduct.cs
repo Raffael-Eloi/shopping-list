@@ -13,21 +13,31 @@ public class AddProduct(
 {
     public async Task<AddProductResponse> AddAsync(AddProductRequest request)
     {
-        ValidationResult result = validator.Validate(request);
-
-        if (!result.IsValid)
+        if (RequestIsValid(request, out AddProductResponse invalidResponse))
         {
-            return new AddProductResponse(result.Errors);
+            return invalidResponse;
         }
 
         Product product = CreateProduct(request);
 
-        Guid productId = await repository.Add(product);
+        Guid productId = await PersistProduct(product);
 
-        return new AddProductResponse
+        return SuccessfulResponse(productId);
+    }
+
+    private bool RequestIsValid(AddProductRequest request, out AddProductResponse invalidResponse)
+    {
+        invalidResponse = new AddProductResponse();
+
+        ValidationResult result = validator.Validate(request);
+
+        if (!result.IsValid)
         {
-            ProductId = productId
-        };
+            invalidResponse.Errors = result.Errors;
+            return true;
+        }
+
+        return false;
     }
 
     private static Product CreateProduct(AddProductRequest addProductDTO)
@@ -38,6 +48,19 @@ public class AddProduct(
             Description = addProductDTO.Description,
             Price = addProductDTO.Price,
             Quantity = addProductDTO.Quantity,
+        };
+    }
+
+    private async Task<Guid> PersistProduct(Product product)
+    {
+        return await repository.Add(product);
+    }
+
+    private static AddProductResponse SuccessfulResponse(Guid productId)
+    {
+        return new AddProductResponse
+        {
+            ProductId = productId
         };
     }
 }
