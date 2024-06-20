@@ -1,9 +1,9 @@
 ﻿using ShoppingList.Application.Models;
 using ShoppingList.Domain.Entities;
 
-namespace ShoppingList.Application.Tetsts.Mappers;
+namespace ShoppingList.Application.Contracts.Mappers;
 
-internal interface IProductMapper
+public interface IProductMapper
 {
     GetProductResponse Map(Product product);
 }

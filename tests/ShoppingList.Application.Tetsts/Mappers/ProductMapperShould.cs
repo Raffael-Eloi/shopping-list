@@ -1,4 +1,6 @@
 ﻿using FluentAssertions;
+using ShoppingList.Application.Contracts.Mappers;
+using ShoppingList.Application.Mappers;
 using ShoppingList.Application.Models;
 using ShoppingList.Domain.Entities;
 

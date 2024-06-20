@@ -1,7 +1,8 @@
-﻿using ShoppingList.Application.Models;
+﻿using ShoppingList.Application.Contracts.Mappers;
+using ShoppingList.Application.Models;
 using ShoppingList.Domain.Entities;
 
-namespace ShoppingList.Application.Tetsts.Mappers;
+namespace ShoppingList.Application.Mappers;
 
 public class ProductMapper : IProductMapper
 {
