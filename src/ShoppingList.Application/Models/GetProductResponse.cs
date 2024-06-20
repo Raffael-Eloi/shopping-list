@@ -7,6 +7,7 @@ public class GetProductResponse
     public GetProductResponse()
     {
         Name = string.Empty;
+        Description = string.Empty;
         Errors = [];
     }
 
@@ -15,6 +16,8 @@ public class GetProductResponse
     public string Name { get; set; }
 
     public decimal Price { get; set; }
+
+    public string Description { get; set; }
 
     public bool IsValid => !Errors.Any();
 

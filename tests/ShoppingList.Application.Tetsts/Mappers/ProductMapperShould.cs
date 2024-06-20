@@ -1,7 +1,6 @@
 ﻿using FluentAssertions;
 using ShoppingList.Application.Models;
 using ShoppingList.Domain.Entities;
-using System.Xml.Linq;
 
 namespace ShoppingList.Application.Tetsts.Mappers;
 
@@ -86,6 +85,29 @@ internal class ProductMapperShould
         #region Assert(Then)
 
         response.Price.Should().Be(price);
+
+        #endregion
+    }
+
+    [Test]
+    public void Map_Description()
+    {
+        #region Arrange(Given)
+
+        string description = "Product Description";
+        product.Description = description;
+
+        #endregion
+
+        #region Act(When)
+
+        GetProductResponse response = mapper.Map(product);
+
+        #endregion
+
+        #region Assert(Then)
+
+        response.Description.Should().Be(description);
 
         #endregion
     }
