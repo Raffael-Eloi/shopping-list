@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingList.Application", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingList.Domain", "src\ShoppingList.Domain\ShoppingList.Domain.csproj", "{9A777B27-F9DF-40A9-9341-4602D92E8380}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingList.Domain.Tests", "tests\ShoppingList.Domain.Tests\ShoppingList.Domain.Tests.csproj", "{F9929D71-9C1E-4769-AD97-9638C1A572F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingList.Domain.Tests", "tests\ShoppingList.Domain.Tests\ShoppingList.Domain.Tests.csproj", "{F9929D71-9C1E-4769-AD97-9638C1A572F9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - IntegrationTests", "3 - IntegrationTests", "{5BE150C4-0CE8-4937-B595-CB850A61C262}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
