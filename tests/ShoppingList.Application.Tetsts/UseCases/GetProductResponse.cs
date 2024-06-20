@@ -1,13 +1,17 @@
 ﻿using FluentValidation.Results;
 
-namespace ShoppingList.Application.Tetsts.UseCases
+namespace ShoppingList.Application.Tetsts.UseCases;
+
+internal class GetProductResponse
 {
-    internal class GetProductResponse
+    public GetProductResponse()
     {
-        public Guid Id { get; set; }
-
-        public bool IsValid => !Errors.Any();
-
-        public IEnumerable<ValidationFailure> Errors { get; set; }
+        Errors = [];
     }
+
+    public Guid Id { get; set; }
+
+    public bool IsValid => !Errors.Any();
+
+    public IEnumerable<ValidationFailure> Errors { get; set; }
 }

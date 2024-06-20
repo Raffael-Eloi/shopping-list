@@ -22,7 +22,10 @@ internal class GetProductShould
 
         validatorMock = A.Fake<IGetProductValidator>();
 
-        getProduct = new GetProduct(repositoryMock);
+        getProduct = new GetProduct(repositoryMock, validatorMock);
+
+        A.CallTo(() => validatorMock.Validate(A<Product>._))
+            .Returns(new ValidationResult());
     }
 
     [Test]
