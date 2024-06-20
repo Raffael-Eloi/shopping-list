@@ -10,7 +10,7 @@ namespace ShoppingList.API.Controllers;
 [ApiController]
 public class AddProductController(IAddProduct addProduct) : ControllerBase
 {
-    [HttpGet(Name = "AddProduct")]
+    [HttpPost(Name = "AddProduct")]
     [SwaggerOperation(
         Summary = "Add product",
         Description = "Add a new product.")]
