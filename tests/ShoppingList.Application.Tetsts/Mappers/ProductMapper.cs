@@ -9,6 +9,7 @@ public class ProductMapper : IProductMapper
     {
         return new GetProductResponse
         {
+            Id = product.Id,
             Name = product.Name,
         };
     }
