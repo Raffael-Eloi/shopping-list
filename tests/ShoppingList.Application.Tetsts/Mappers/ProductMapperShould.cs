@@ -62,9 +62,30 @@ internal class ProductMapperShould
 
         #region Assert(Then)
 
-        response.Should().NotBeNull();
-
         response.Name.Should().Be(name);
+
+        #endregion
+    }
+    
+    [Test]
+    public void Map_Price()
+    {
+		#region Arrange(Given)
+
+		decimal price = 11L;
+        product.Price = price;
+
+        #endregion
+
+        #region Act(When)
+
+        GetProductResponse response = mapper.Map(product);
+
+        #endregion
+
+        #region Assert(Then)
+
+        response.Price.Should().Be(price);
 
         #endregion
     }

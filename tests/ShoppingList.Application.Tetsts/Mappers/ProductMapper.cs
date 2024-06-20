@@ -11,6 +11,7 @@ public class ProductMapper : IProductMapper
         {
             Id = product.Id,
             Name = product.Name,
+            Price = product.Price
         };
     }
 }

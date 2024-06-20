@@ -14,6 +14,8 @@ public class GetProductResponse
 
     public string Name { get; set; }
 
+    public decimal Price { get; set; }
+
     public bool IsValid => !Errors.Any();
 
     public IEnumerable<ValidationFailure> Errors { get; set; }
