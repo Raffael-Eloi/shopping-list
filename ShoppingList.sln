@@ -15,13 +15,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingList.Domain", "src\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingList.Domain.Tests", "tests\ShoppingList.Domain.Tests\ShoppingList.Domain.Tests.csproj", "{F9929D71-9C1E-4769-AD97-9638C1A572F9}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - IntegrationTests", "3 - IntegrationTests", "{5BE150C4-0CE8-4937-B595-CB850A61C262}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - IntegrationTests", "4 - IntegrationTests", "{5BE150C4-0CE8-4937-B595-CB850A61C262}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingList.Behavior.Tests", "tests\ShoppingList.Behavior.Tests\ShoppingList.Behavior.Tests.csproj", "{6CC2E50F-0D88-4B9B-8559-392F050AF505}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0 - Presentation", "0 - Presentation", "{A0E0E19D-9389-498A-875E-30FEF5FB4B67}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingList.API", "src\ShoppingList.API\ShoppingList.API.csproj", "{792DF380-BFD9-4183-AD9D-16FA31809874}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Infrastructure", "3 - Infrastructure", "{E1D8F374-20D6-4E52-B82E-777D562D17C7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingList.Infrastructure", "src\ShoppingList.Infrastructure\ShoppingList.Infrastructure.csproj", "{C935AAAD-BDFA-4B0D-B36C-87031090103F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingList.Infrastructure.IoC", "src\ShoppingList.Infrastructure.IoC\ShoppingList.Infrastructure.IoC.csproj", "{08158E32-81C7-4B16-AECA-B7B70250CE64}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,6 +59,14 @@ Global
 		{792DF380-BFD9-4183-AD9D-16FA31809874}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{792DF380-BFD9-4183-AD9D-16FA31809874}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{792DF380-BFD9-4183-AD9D-16FA31809874}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C935AAAD-BDFA-4B0D-B36C-87031090103F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C935AAAD-BDFA-4B0D-B36C-87031090103F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C935AAAD-BDFA-4B0D-B36C-87031090103F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C935AAAD-BDFA-4B0D-B36C-87031090103F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08158E32-81C7-4B16-AECA-B7B70250CE64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08158E32-81C7-4B16-AECA-B7B70250CE64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08158E32-81C7-4B16-AECA-B7B70250CE64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08158E32-81C7-4B16-AECA-B7B70250CE64}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -64,6 +78,8 @@ Global
 		{F9929D71-9C1E-4769-AD97-9638C1A572F9} = {E2DD306A-152F-4F8E-AFC1-0811FBE5F50B}
 		{6CC2E50F-0D88-4B9B-8559-392F050AF505} = {5BE150C4-0CE8-4937-B595-CB850A61C262}
 		{792DF380-BFD9-4183-AD9D-16FA31809874} = {A0E0E19D-9389-498A-875E-30FEF5FB4B67}
+		{C935AAAD-BDFA-4B0D-B36C-87031090103F} = {E1D8F374-20D6-4E52-B82E-777D562D17C7}
+		{08158E32-81C7-4B16-AECA-B7B70250CE64} = {E1D8F374-20D6-4E52-B82E-777D562D17C7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E1E5651F-6B64-41FF-86CA-71672290F37B}
