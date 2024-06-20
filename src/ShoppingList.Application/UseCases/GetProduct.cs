@@ -14,18 +14,38 @@ public class GetProduct(
 {
     public async Task<GetProductResponse> GetByIdAsync(Guid productId)
     {
-        Product? product = await repository.GetById(productId);
+        Product? product = await GetProductById(productId);
 
-        ValidationResult validationResult = validator.Validate(product);
-
-        if (!validationResult.IsValid)
+        if (RequestIsValid(product, out GetProductResponse invalidResponse))
         {
-            return new GetProductResponse
-            {
-                Errors = validationResult.Errors,
-            };
+            return invalidResponse;
         }
 
+        return Map(product);
+    }
+
+    private async Task<Product?> GetProductById(Guid productId)
+    {
+        return await repository.GetById(productId);
+    }
+
+    private bool RequestIsValid(Product? product, out GetProductResponse invalidResponse)
+    {
+        invalidResponse = new GetProductResponse();
+
+        ValidationResult result = validator.Validate(product);
+
+        if (!result.IsValid)
+        {
+            invalidResponse.Errors = result.Errors;
+            return true;
+        }
+
+        return false;
+    }
+
+    private static GetProductResponse Map(Product? product)
+    {
         return new GetProductResponse
         {
             Id = product!.Id,
