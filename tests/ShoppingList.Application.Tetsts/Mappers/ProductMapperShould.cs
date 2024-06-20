@@ -24,7 +24,7 @@ internal class ProductMapperShould
 
         #region Act(When)
 
-        GetProductResponse response = ProductMapper.Map(product);
+        GetProductResponse response = mapper.Map(product);
 
         #endregion
 

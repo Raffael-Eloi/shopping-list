@@ -1,13 +1,15 @@
 ﻿using ShoppingList.Application.Models;
 using ShoppingList.Domain.Entities;
 
-namespace ShoppingList.Application.Tetsts.Mappers
+namespace ShoppingList.Application.Tetsts.Mappers;
+
+public class ProductMapper : IProductMapper
 {
-    internal class ProductMapper : IProductMapper
+    public GetProductResponse Map(Product product)
     {
-        internal static GetProductResponse Map(Product product)
+        return new GetProductResponse
         {
-            throw new NotImplementedException();
-        }
+            Name = product.Name,
+        };
     }
 }

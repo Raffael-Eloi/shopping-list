@@ -1,6 +1,9 @@
-﻿namespace ShoppingList.Application.Tetsts.Mappers
+﻿using ShoppingList.Application.Models;
+using ShoppingList.Domain.Entities;
+
+namespace ShoppingList.Application.Tetsts.Mappers;
+
+internal interface IProductMapper
 {
-    internal interface IProductMapper
-    {
-    }
+    GetProductResponse Map(Product product);
 }
