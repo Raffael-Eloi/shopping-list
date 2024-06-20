@@ -1,5 +1,6 @@
 ﻿
 using FluentValidation.Results;
+using ShoppingList.Application.Contracts.Mappers;
 using ShoppingList.Application.Contracts.UseCases;
 using ShoppingList.Application.Contracts.Validators;
 using ShoppingList.Application.Models;
@@ -10,7 +11,8 @@ namespace ShoppingList.Application.UseCases;
 
 public class GetProduct(
     IProductRepository repository,
-    IGetProductValidator validator) : IGetProduct
+    IGetProductValidator validator,
+    IProductMapper mapper) : IGetProduct
 {
     public async Task<GetProductResponse> GetByIdAsync(Guid productId)
     {
@@ -44,11 +46,8 @@ public class GetProduct(
         return false;
     }
 
-    private static GetProductResponse Map(Product? product)
+    private GetProductResponse Map(Product? product)
     {
-        return new GetProductResponse
-        {
-            Id = product!.Id,
-        };
+        return mapper.Map(product!);
     }
 }

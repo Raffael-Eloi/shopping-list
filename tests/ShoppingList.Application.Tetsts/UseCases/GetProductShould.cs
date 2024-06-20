@@ -1,6 +1,7 @@
 ﻿using FakeItEasy;
 using FluentAssertions;
 using FluentValidation.Results;
+using ShoppingList.Application.Contracts.Mappers;
 using ShoppingList.Application.Contracts.UseCases;
 using ShoppingList.Application.Contracts.Validators;
 using ShoppingList.Application.Models;
@@ -16,6 +17,8 @@ internal class GetProductShould
 
     private IGetProductValidator validatorMock;
     
+    private IProductMapper mapperMock;
+    
     private IGetProduct getProduct;
 
     [SetUp]
@@ -25,7 +28,12 @@ internal class GetProductShould
 
         validatorMock = A.Fake<IGetProductValidator>();
 
-        getProduct = new GetProduct(repositoryMock, validatorMock);
+        mapperMock = A.Fake<IProductMapper>();
+
+        getProduct = new GetProduct(
+            repositoryMock, 
+            validatorMock,
+            mapperMock);
 
         A.CallTo(() => validatorMock.Validate(A<Product>._))
             .Returns(new ValidationResult());
@@ -45,6 +53,12 @@ internal class GetProductShould
 
         A.CallTo(() => repositoryMock.GetById(productId))
             .Returns(product);
+
+        A.CallTo(() => mapperMock.Map(product))
+            .Returns(new GetProductResponse
+            {
+                Id = productId,
+            });
 
         #endregion
 
