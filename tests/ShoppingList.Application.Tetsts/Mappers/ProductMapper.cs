@@ -12,7 +12,8 @@ public class ProductMapper : IProductMapper
             Id = product.Id,
             Name = product.Name,
             Price = product.Price,
-            Description = product.Description
+            Description = product.Description,
+            Quantity = product.Quantity
         };
     }
 }

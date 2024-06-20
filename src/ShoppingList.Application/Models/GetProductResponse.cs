@@ -19,6 +19,8 @@ public class GetProductResponse
 
     public string Description { get; set; }
 
+    public int Quantity { get; set; }
+
     public bool IsValid => !Errors.Any();
 
     public IEnumerable<ValidationFailure> Errors { get; set; }

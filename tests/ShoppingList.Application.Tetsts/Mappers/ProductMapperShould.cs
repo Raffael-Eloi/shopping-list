@@ -111,4 +111,27 @@ internal class ProductMapperShould
 
         #endregion
     }
+
+    [Test]
+    public void Map_Quantity()
+    {
+        #region Arrange(Given)
+
+        int quantity = 5;
+        product.Quantity = quantity;
+
+        #endregion
+
+        #region Act(When)
+
+        GetProductResponse response = mapper.Map(product);
+
+        #endregion
+
+        #region Assert(Then)
+
+        response.Quantity.Should().Be(quantity);
+
+        #endregion
+    }
 }
