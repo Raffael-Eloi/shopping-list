@@ -14,7 +14,7 @@ internal class AddProductShould
 {
     private IProductRepository productRepositoryMock;
     
-    private IValidator validatorMock;
+    private IAddProductValidator validatorMock;
     
     private IAddProduct addProduct;
     
@@ -25,7 +25,7 @@ internal class AddProductShould
     {
         productRepositoryMock = A.Fake<IProductRepository>();
 
-        validatorMock = A.Fake<IValidator>();
+        validatorMock = A.Fake<IAddProductValidator>();
 
         addProduct = new AddProduct(
             productRepositoryMock,

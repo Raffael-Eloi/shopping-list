@@ -9,7 +9,7 @@ namespace ShoppingList.Application.UseCases;
 
 public class AddProduct(
     IProductRepository repository,
-    IValidator validator) : IAddProduct
+    IAddProductValidator validator) : IAddProduct
 {
     public async Task<AddProductResponse> AddAsync(AddProductRequest request)
     {

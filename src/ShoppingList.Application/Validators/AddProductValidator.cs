@@ -1,9 +1,10 @@
 ﻿using FluentValidation;
+using ShoppingList.Application.Contracts.Validators;
 using ShoppingList.Application.Models;
 
 namespace ShoppingList.Application.Validators;
 
-public class AddProductValidator : AbstractValidator<AddProductRequest>, IValidator
+public class AddProductValidator : AbstractValidator<AddProductRequest>, IAddProductValidator
 {
     public AddProductValidator()
     {
