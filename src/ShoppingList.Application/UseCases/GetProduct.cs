@@ -1,12 +1,14 @@
 ﻿
 using FluentValidation.Results;
-using ShoppingList.Application.Tetsts.Validators;
+using ShoppingList.Application.Contracts.UseCases;
+using ShoppingList.Application.Contracts.Validators;
+using ShoppingList.Application.Models;
 using ShoppingList.Domain.Contracts.Repositories;
 using ShoppingList.Domain.Entities;
 
-namespace ShoppingList.Application.Tetsts.UseCases;
+namespace ShoppingList.Application.UseCases;
 
-internal class GetProduct(
+public class GetProduct(
     IProductRepository repository,
     IGetProductValidator validator) : IGetProduct
 {
@@ -26,7 +28,7 @@ internal class GetProduct(
 
         return new GetProductResponse
         {
-            Id = product.Id,
+            Id = product!.Id,
         };
     }
 }

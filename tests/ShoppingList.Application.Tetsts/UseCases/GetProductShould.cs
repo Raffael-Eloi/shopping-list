@@ -1,7 +1,10 @@
 ﻿using FakeItEasy;
 using FluentAssertions;
 using FluentValidation.Results;
-using ShoppingList.Application.Tetsts.Validators;
+using ShoppingList.Application.Contracts.UseCases;
+using ShoppingList.Application.Contracts.Validators;
+using ShoppingList.Application.Models;
+using ShoppingList.Application.UseCases;
 using ShoppingList.Domain.Contracts.Repositories;
 using ShoppingList.Domain.Entities;
 

@@ -1,7 +1,7 @@
 ﻿using FluentValidation.Results;
 using ShoppingList.Domain.Entities;
 
-namespace ShoppingList.Application.Tetsts.Validators;
+namespace ShoppingList.Application.Contracts.Validators;
 
 public interface IGetProductValidator
 {

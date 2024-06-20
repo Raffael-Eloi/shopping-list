@@ -1,8 +1,8 @@
 ﻿using FluentValidation.Results;
 
-namespace ShoppingList.Application.Tetsts.UseCases;
+namespace ShoppingList.Application.Models;
 
-internal class GetProductResponse
+public class GetProductResponse
 {
     public GetProductResponse()
     {
