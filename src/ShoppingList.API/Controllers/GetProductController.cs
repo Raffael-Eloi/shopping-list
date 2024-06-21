@@ -8,26 +8,26 @@ namespace ShoppingList.API.Controllers;
 
 [Route("api/products")]
 [ApiController]
-public class AddProductController(IAddProduct addProduct) : ControllerBase
+public class GetProductController(IGetProduct getProduct) : ControllerBase
 {
-    [HttpPost(Name = "AddProduct")]
+    [HttpGet("{id:Guid}", Name = "GetProductById")]
     [SwaggerOperation(
-        Summary = "Add product",
-        Description = "Add a new product.")]
-    [ProducesResponseType(typeof(AddProductResponse),
-        StatusCodes.Status201Created)]
+        Summary = "Get product by id",
+        Description = "Get a product given the id.")]
+    [ProducesResponseType(typeof(GetProductResponse),
+        StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ValidationProblemDetails),
         StatusCodes.Status400BadRequest)]
     [ProducesDefaultResponseType]
-    public async Task<ActionResult> AddProduct(AddProductRequest request)
+    public async Task<ActionResult> GetProductById(Guid id)
     {
-        AddProductResponse response = await addProduct.AddAsync(request);
+        GetProductResponse response = await getProduct.GetByIdAsync(id);
 
         if (!response.IsValid)
         {
             return ValidationProblem(ModelState.AddErrosFromNofifications(response.Errors));
         }
 
-        return StatusCode(StatusCodes.Status201Created, response);
+        return Ok(response);
     }
 }
