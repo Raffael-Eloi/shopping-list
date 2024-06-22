@@ -1,17 +1,21 @@
-﻿using ShoppingList.Domain.Contracts.Repositories;
+﻿using MongoDB.Driver;
+using ShoppingList.Domain.Contracts.Repositories;
 using ShoppingList.Domain.Entities;
+using ShoppingList.Infrastructure.Database.Contexts;
 
 namespace ShoppingList.Infrastructure.Repositories;
 
-public class ProductRepository : IProductRepository
+public class ProductRepository(ProductContext context) : IProductRepository
 {
-    public Task<Guid> Add(Product product)
+    public async Task Add(Product product)
     {
-        throw new NotImplementedException();
+        await context.Products.InsertOneAsync(product);
     }
 
-    public Task<Product?> GetById(Guid id)
+    public async Task<Product?> GetById(Guid id)
     {
-        throw new NotImplementedException();
+        return await context.Products
+            .Find(payment => payment.Id == id)
+            .FirstOrDefaultAsync();
     }
 }

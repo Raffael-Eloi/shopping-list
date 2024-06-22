@@ -28,7 +28,7 @@ public partial class ApiException<TResult>
     private static void AddInformationFromException(ProblemDetails problem)
     {
         problem.Title = problem.AdditionalProperties["Message"].ToString();
-        problem.Detail = problem.AdditionalProperties["StackTrace"].ToString();
+        problem.Detail = problem.AdditionalProperties["Message"].ToString();
         problem.Status = int.Parse(problem.AdditionalProperties["StatusCode"].ToString()!);
     }
 

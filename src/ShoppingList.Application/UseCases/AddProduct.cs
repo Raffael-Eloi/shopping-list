@@ -20,9 +20,9 @@ public class AddProduct(
 
         Product product = CreateProduct(request);
 
-        Guid productId = await PersistProduct(product);
+        await PersistProduct(product);
 
-        return SuccessfulResponse(productId);
+        return SuccessfulResponse(product.Id);
     }
 
     private bool RequestIsValid(AddProductRequest request, out AddProductResponse invalidResponse)
@@ -51,9 +51,9 @@ public class AddProduct(
         };
     }
 
-    private async Task<Guid> PersistProduct(Product product)
+    private async Task PersistProduct(Product product)
     {
-        return await repository.Add(product);
+        await repository.Add(product);
     }
 
     private static AddProductResponse SuccessfulResponse(Guid productId)
