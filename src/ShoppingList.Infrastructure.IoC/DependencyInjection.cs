@@ -17,13 +17,37 @@ public static class DependencyInjection
 {
     public static void AddDependencies(this ContainerBuilder container)
     {
+        #region UseCases
+
         container.RegisterType<AddProduct>().As<IAddProduct>();
-        container.RegisterType<ProductRepository>().As<IProductRepository>();
+        container.RegisterType<GetProduct>().As<IGetProduct>();
+        
+        #endregion
+
+        #region Validators
+        
         container.RegisterType<AddProductValidator>().As<IAddProductValidator>();
+        container.RegisterType<GetProductValidator>().As<IGetProductValidator>();
+        
+        #endregion
+
+        #region Mappers
+        
+        container.RegisterType<ProductMapper>().As<IProductMapper>();
+        
+        #endregion
+
+        #region Repositories
+
+        container.RegisterType<ProductRepository>().As<IProductRepository>();
+        
+        #endregion
+
+        #region DatabaseConfig
+        
         container.RegisterType<ProductContext>();
         container.RegisterType<MongoDBSettings>().As<IDatabaseConfiguration>();
-        container.RegisterType<GetProduct>().As<IGetProduct>();
-        container.RegisterType<GetProductValidator>().As<IGetProductValidator>();
-        container.RegisterType<ProductMapper>().As<IProductMapper>();
+        
+        #endregion
     }
 }
