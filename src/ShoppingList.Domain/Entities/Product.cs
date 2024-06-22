@@ -7,6 +7,7 @@ public class Product
         Id = Guid.NewGuid();
         Name = string.Empty;
         Description = string.Empty;
+        CreatedAt = DateTime.UtcNow;
         Reviews = [];
     }
 
@@ -19,6 +20,8 @@ public class Product
     public string Description { get; set; }
 
     public int Quantity { get; set; }
+
+    public DateTime CreatedAt { get; set; }
 
     public ICollection<Review> Reviews { get; set; }
 }
