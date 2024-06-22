@@ -15,4 +15,8 @@
     <ProjectReference Include="..\ShoppingList.Application\ShoppingList.Application.csproj" />
     <ProjectReference Include="..\ShoppingList.Infrastructure.IoC\ShoppingList.Infrastructure.IoC.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="ShoppingList.Behavior.Tests" />
+  </ItemGroup>
 </Project>
