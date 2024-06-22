@@ -14,7 +14,8 @@ public class ProductMapper : IProductMapper
             Name = product.Name,
             Price = product.Price,
             Description = product.Description,
-            Quantity = product.Quantity
+            Quantity = product.Quantity,
+            CreatedAt = product.CreatedAt
         };
     }
 }
