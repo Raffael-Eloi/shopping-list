@@ -136,4 +136,27 @@ internal class ProductMapperShould
 
         #endregion
     }
+
+    [Test]
+    public void Map_CreatedAt()
+    {
+        #region Arrange(Given)
+
+        DateTime createdAt = DateTime.UtcNow;
+        product.CreatedAt = createdAt;
+
+        #endregion
+
+        #region Act(When)
+
+        GetProductResponse response = mapper.Map(product);
+
+        #endregion
+
+        #region Assert(Then)
+
+        response.CreatedAt.Should().Be(createdAt);
+
+        #endregion
+    }
 }

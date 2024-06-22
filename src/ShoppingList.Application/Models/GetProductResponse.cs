@@ -21,6 +21,8 @@ public class GetProductResponse
 
     public int Quantity { get; set; }
 
+    public DateTime CreatedAt { get; set; }
+
     public bool IsValid => !Errors.Any();
 
     public IEnumerable<ValidationFailure> Errors { get; set; }
