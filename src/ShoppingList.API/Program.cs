@@ -1,5 +1,6 @@
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using ShoppingList.API.Middlewares;
 using ShoppingList.Infrastructure.IoC;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -24,6 +25,8 @@ app.UseSwagger();
 app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
+
+app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseAuthorization();
 
