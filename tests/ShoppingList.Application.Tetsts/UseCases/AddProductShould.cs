@@ -1,6 +1,7 @@
 ﻿using FakeItEasy;
 using FluentAssertions;
 using FluentValidation.Results;
+using Microsoft.Extensions.Logging;
 using ShoppingList.Application.Contracts.UseCases;
 using ShoppingList.Application.Contracts.Validators;
 using ShoppingList.Application.Models;
@@ -16,6 +17,8 @@ internal class AddProductShould
     
     private IAddProductValidator validatorMock;
     
+    private ILogger<AddProduct> loggerMock;
+    
     private IAddProduct addProduct;
     
     private AddProductRequest request;
@@ -27,9 +30,12 @@ internal class AddProductShould
 
         validatorMock = A.Fake<IAddProductValidator>();
 
+        loggerMock = A.Fake<ILogger<AddProduct>>();
+
         addProduct = new AddProduct(
             productRepositoryMock,
-            validatorMock);
+            validatorMock,
+            loggerMock);
 
         request = new AddProductRequest();
 
@@ -83,7 +89,7 @@ internal class AddProductShould
 
         #region Act(When)
 
-        AddProductResponse response = await addProduct.AddAsync(request);
+        await addProduct.AddAsync(request);
 
         #endregion
 
