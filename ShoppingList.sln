@@ -30,6 +30,10 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingList.Infrastructure.IoC", "src\ShoppingList.Infrastructure.IoC\ShoppingList.Infrastructure.IoC.csproj", "{08158E32-81C7-4B16-AECA-B7B70250CE64}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0 - Delivery", "0 - Delivery", "{BDF9C01B-5C03-4DB3-A6AD-6FA76C266926}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+		Dockerfile = Dockerfile
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
