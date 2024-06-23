@@ -1,5 +1,5 @@
 ﻿using FluentValidation.Results;
-using Serilog;
+using Microsoft.Extensions.Logging;
 using ShoppingList.Application.Contracts.UseCases;
 using ShoppingList.Application.Contracts.Validators;
 using ShoppingList.Application.Models;
@@ -10,14 +10,11 @@ namespace ShoppingList.Application.UseCases;
 
 public class AddProduct(
     IProductRepository repository,
-    IAddProductValidator validator) : IAddProduct
+    IAddProductValidator validator,
+    ILogger<AddProduct> logger) : IAddProduct
 {
     public async Task<AddProductResponse> AddAsync(AddProductRequest request)
     {
-        Log.Logger = new LoggerConfiguration()
-            .WriteTo.Console()
-            .CreateLogger();
-
         if (RequestIsValid(request, out AddProductResponse invalidResponse))
         {
             return invalidResponse;
@@ -27,10 +24,7 @@ public class AddProduct(
 
         await PersistProduct(product);
 
-        Log.Information("Product {ProductId} added with request {@ProductRequest} in {CreatedAt}",
-            product.Id,
-            request,
-            DateTime.UtcNow);
+        Log(request, product);
 
         return SuccessfulResponse(product.Id);
     }
@@ -64,6 +58,14 @@ public class AddProduct(
     private async Task PersistProduct(Product product)
     {
         await repository.Add(product);
+    }
+
+    private void Log(AddProductRequest request, Product product)
+    {
+        logger.LogInformation("Product {ProductId} added with request {@ProductRequest} in {CreatedAt}",
+            product.Id,
+            request,
+            DateTime.UtcNow);
     }
 
     private static AddProductResponse SuccessfulResponse(Guid productId)

@@ -1,5 +1,6 @@
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using Serilog;
 using ShoppingList.API.Middlewares;
 using ShoppingList.Infrastructure.IoC;
 
@@ -10,6 +11,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Host.UseSerilog((context, configuration) =>
+    configuration.ReadFrom.Configuration(context.Configuration));
 
 builder.Host
     .UseServiceProviderFactory(new AutofacServiceProviderFactory())
