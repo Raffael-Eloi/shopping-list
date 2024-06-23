@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Domain", "2 - Domain", "{E2DD306A-152F-4F8E-AFC1-0811FBE5F50B}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Domain", "3 - Domain", "{E2DD306A-152F-4F8E-AFC1-0811FBE5F50B}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Application", "1 - Application", "{4607D323-C767-4257-AD55-8ECFF0E178A8}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Application", "2 - Application", "{4607D323-C767-4257-AD55-8ECFF0E178A8}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingList.Application.Tetsts", "tests\ShoppingList.Application.Tetsts\ShoppingList.Application.Tetsts.csproj", "{CD84FCC5-DD46-4EA4-9B7A-3180C0F4A453}"
 EndProject
@@ -15,19 +15,21 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingList.Domain", "src\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingList.Domain.Tests", "tests\ShoppingList.Domain.Tests\ShoppingList.Domain.Tests.csproj", "{F9929D71-9C1E-4769-AD97-9638C1A572F9}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - IntegrationTests", "4 - IntegrationTests", "{5BE150C4-0CE8-4937-B595-CB850A61C262}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5 - IntegrationTests", "5 - IntegrationTests", "{5BE150C4-0CE8-4937-B595-CB850A61C262}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingList.Behavior.Tests", "tests\ShoppingList.Behavior.Tests\ShoppingList.Behavior.Tests.csproj", "{6CC2E50F-0D88-4B9B-8559-392F050AF505}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0 - Presentation", "0 - Presentation", "{A0E0E19D-9389-498A-875E-30FEF5FB4B67}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Presentation", "1 - Presentation", "{A0E0E19D-9389-498A-875E-30FEF5FB4B67}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingList.API", "src\ShoppingList.API\ShoppingList.API.csproj", "{792DF380-BFD9-4183-AD9D-16FA31809874}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingList.API", "src\ShoppingList.API\ShoppingList.API.csproj", "{792DF380-BFD9-4183-AD9D-16FA31809874}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Infrastructure", "3 - Infrastructure", "{E1D8F374-20D6-4E52-B82E-777D562D17C7}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - Infrastructure", "4 - Infrastructure", "{E1D8F374-20D6-4E52-B82E-777D562D17C7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingList.Infrastructure", "src\ShoppingList.Infrastructure\ShoppingList.Infrastructure.csproj", "{C935AAAD-BDFA-4B0D-B36C-87031090103F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingList.Infrastructure", "src\ShoppingList.Infrastructure\ShoppingList.Infrastructure.csproj", "{C935AAAD-BDFA-4B0D-B36C-87031090103F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingList.Infrastructure.IoC", "src\ShoppingList.Infrastructure.IoC\ShoppingList.Infrastructure.IoC.csproj", "{08158E32-81C7-4B16-AECA-B7B70250CE64}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingList.Infrastructure.IoC", "src\ShoppingList.Infrastructure.IoC\ShoppingList.Infrastructure.IoC.csproj", "{08158E32-81C7-4B16-AECA-B7B70250CE64}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0 - Delivery", "0 - Delivery", "{BDF9C01B-5C03-4DB3-A6AD-6FA76C266926}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
