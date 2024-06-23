@@ -1,4 +1,5 @@
 ﻿using FluentValidation.Results;
+using Serilog;
 using ShoppingList.Application.Contracts.UseCases;
 using ShoppingList.Application.Contracts.Validators;
 using ShoppingList.Application.Models;
@@ -13,6 +14,10 @@ public class AddProduct(
 {
     public async Task<AddProductResponse> AddAsync(AddProductRequest request)
     {
+        Log.Logger = new LoggerConfiguration()
+            .WriteTo.Console()
+            .CreateLogger();
+
         if (RequestIsValid(request, out AddProductResponse invalidResponse))
         {
             return invalidResponse;
@@ -21,6 +26,11 @@ public class AddProduct(
         Product product = CreateProduct(request);
 
         await PersistProduct(product);
+
+        Log.Information("Product {ProductId} added with request {@ProductRequest} in {CreatedAt}",
+            product.Id,
+            request,
+            DateTime.UtcNow);
 
         return SuccessfulResponse(product.Id);
     }
