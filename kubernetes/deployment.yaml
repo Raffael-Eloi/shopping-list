@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shopping-list-api-depl
+  labels:
+    app: shopping-list-api-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: shopping-list-api
+  template:
+    metadata:
+      labels:
+        app: shopping-list-api
+    spec:
+      containers:
+      - name: shopping-list-api
+        image: raffaeleloi/shoppinglist:latest
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+          - containerPort: 8080
