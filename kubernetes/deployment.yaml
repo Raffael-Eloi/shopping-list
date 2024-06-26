@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: shopping-list-api-depl
+  name: shopping-list-api-deployment
   labels:
     app: shopping-list-api-deployment
 spec:
@@ -20,6 +20,6 @@ spec:
         resources:
           limits:
             memory: "128Mi"
-            cpu: "500m"
+            cpu: "500m" 
         ports:
           - containerPort: 8080
