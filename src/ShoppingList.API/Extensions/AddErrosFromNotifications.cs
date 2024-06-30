@@ -9,7 +9,7 @@ public static class AddErrosFromNotifications
     {
         foreach (ValidationFailure item in errors)
         {
-            modelState.AddModelError(item.ErrorCode, item.ErrorMessage);
+            modelState.AddModelError(item.PropertyName, item.ErrorMessage);
         }
 
         return modelState;
