@@ -66,6 +66,8 @@ jobs:
         sed -i 's|${SHOPPING_LIST_DB_PASSWORD}|'"$SHOPPING_LIST_DB_PASSWORD"'|g' appsettings.json
         sed -i 's|${RAFFA_LAB_DB_CLUSTER_ADDRESS}|'"$RAFFA_LAB_DB_CLUSTER_ADDRESS"'|g' appsettings.json
         sed -i 's|${RAFFA_LAB_DB_CLUSTER_NAME}|'"$RAFFA_LAB_DB_CLUSTER_NAME"'|g' appsettings.json
+
+        cat appsettings.json
       
     - name: Behavior Tests
       run: |
