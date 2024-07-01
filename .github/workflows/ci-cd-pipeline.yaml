@@ -5,6 +5,12 @@ on:
     branches:
     - main
 
+env:
+    SHOPPING_LIST_DB_USER: ${{ secrets.SHOPPING_LIST_DB_USER }}
+    SHOPPING_LIST_DB_PASSWORD: ${{ secrets.SHOPPING_LIST_DB_PASSWORD }}
+    RAFFA_LAB_DB_CLUSTER_ADDRESS: ${{ secrets.RAFFA_LAB_DB_CLUSTER_ADDRESS }}
+    RAFFA_LAB_DB_CLUSTER_NAME: ${{ secrets.RAFFA_LAB_DB_CLUSTER_NAME }}
+
 jobs:
   build:
     name: Build
