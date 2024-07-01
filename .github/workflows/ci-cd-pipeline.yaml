@@ -61,6 +61,13 @@ jobs:
       run: |
         cd src
         cd ShoppingList.API
+
+        echo "Substituting variables in appsettings.json"
+
+        echo "SHOPPING_LIST_DB_USER: $SHOPPING_LIST_DB_USER"
+        echo "SHOPPING_LIST_DB_PASSWORD: $SHOPPING_LIST_DB_PASSWORD"
+        echo "RAFFA_LAB_DB_CLUSTER_ADDRESS: $RAFFA_LAB_DB_CLUSTER_ADDRESS"
+        echo "RAFFA_LAB_DB_CLUSTER_NAME: $RAFFA_LAB_DB_CLUSTER_NAME"
         
         sed -i 's|${SHOPPING_LIST_DB_USER}|'"$SHOPPING_LIST_DB_USER"'|g' appsettings.json
         sed -i 's|${SHOPPING_LIST_DB_PASSWORD}|'"$SHOPPING_LIST_DB_PASSWORD"'|g' appsettings.json
