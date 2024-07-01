@@ -1,0 +1,68 @@
+name: CI-CD Pipeline
+on:
+  workflow_dispatch:
+  push:
+    branches:
+    - main
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Setup .NET SDK
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 8.0.x
+    - name: Restore dependencies
+      run: dotnet restore
+
+    - name: Build
+      run: dotnet build --no-restore
+
+  tests:
+    name: Unit Tests
+    runs-on: ubuntu-latest
+    needs: build
+   
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Domain Tests
+      run: |
+        cd tests
+        cd ShoppingList.Domain.Tests    
+        dotnet test 
+        
+    - name: Application Tests
+      run: |
+        cd tests
+        cd ShoppingList.Application.Tetsts
+        dotnet test 
+  
+  integrationTests:
+    name: Integration Tests
+    runs-on: ubuntu-latest
+    needs: tests
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: App Settings Variable Substitution        
+      run: |
+        cd src
+        cd ShoppingList.API
+        
+        sed -i 's|${SHOPPING_LIST_DB_USER}|'"$SHOPPING_LIST_DB_USER"'|g' appsettings.json
+        sed -i 's|${SHOPPING_LIST_DB_PASSWORD}|'"$SHOPPING_LIST_DB_PASSWORD"'|g' appsettings.json
+        sed -i 's|${RAFFA_LAB_DB_CLUSTER_ADDRESS}|'"$RAFFA_LAB_DB_CLUSTER_ADDRESS"'|g' appsettings.json
+        sed -i 's|${RAFFA_LAB_DB_CLUSTER_NAME}|'"$RAFFA_LAB_DB_CLUSTER_NAME"'|g' appsettings.json
+      
+    - name: Behavior Tests
+      run: |
+        cd tests
+        cd ShoppingList.Behavior.Tests
+        dotnet test
