@@ -1,9 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: shopping-list-api-deployment
+  name: shopping-list-api
   labels:
-    app: shopping-list-api-deployment
+    app: shopping-list-api
 spec:
   replicas: 3
   selector:
@@ -16,7 +16,10 @@ spec:
     spec:
       containers:
       - name: shopping-list-api
-        image: raffaeleloi/shoppinglist:latest
+        image: raffaeleloi/shoppinglistapi:latest
+        env:
+        - name: MongoDB__ConnectionURI
+          value: mongodb+srv://${SHOPPING_LIST_DB_USER}:${SHOPPING_LIST_DB_PASSWORD}@${RAFFA_LAB_DB_CLUSTER_ADDRESS}/?retryWrites=true&w=majority&appName=${RAFFA_LAB_DB_CLUSTER_NAME}
         resources:
           limits:
             memory: "128Mi"
