@@ -43,6 +43,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Kubernetes", "Kubernetes", 
 		kubernetes\service.yaml = kubernetes\service.yaml
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pipeline", "Pipeline", "{0DD80D29-304F-4353-B490-715020A9E930}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\ci-cd-pipeline.yaml = .github\workflows\ci-cd-pipeline.yaml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -96,6 +101,7 @@ Global
 		{08158E32-81C7-4B16-AECA-B7B70250CE64} = {E1D8F374-20D6-4E52-B82E-777D562D17C7}
 		{B00C50A9-4F73-42CF-902C-EA74B9BBB788} = {BDF9C01B-5C03-4DB3-A6AD-6FA76C266926}
 		{F410F248-4ED0-463D-9094-29DC3D1367D4} = {BDF9C01B-5C03-4DB3-A6AD-6FA76C266926}
+		{0DD80D29-304F-4353-B490-715020A9E930} = {BDF9C01B-5C03-4DB3-A6AD-6FA76C266926}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E1E5651F-6B64-41FF-86CA-71672290F37B}
