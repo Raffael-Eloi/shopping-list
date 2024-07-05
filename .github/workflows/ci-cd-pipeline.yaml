@@ -6,9 +6,10 @@ on:
     branches:
     - main
 
-permissions: 
-  id-token: write
-  contents: read
+permissions:
+   id-token: write
+   contents: read
+   actions: read
 
 env:
     SHOPPING_LIST_DB_USER: ${{ secrets.SHOPPING_LIST_DB_USER }}
