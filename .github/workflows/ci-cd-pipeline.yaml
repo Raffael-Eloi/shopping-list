@@ -130,7 +130,7 @@ jobs:
       - uses: azure/k8s-set-context@v4
         with:
           method: kubeconfig
-          kubeconfig: az aks get-credentials --name raffa-lab-cluster --resource-group RaffaLab
+          kubeconfig: ${{ KUBECONFIG }}
           context: raffa-lab-cluster
 
       - name: Deploy to Kubernetes
