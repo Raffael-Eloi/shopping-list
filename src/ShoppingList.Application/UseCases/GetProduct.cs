@@ -50,4 +50,9 @@ public class GetProduct(
     {
         return mapper.Map(product!);
     }
+
+    public Task<IEnumerable<GetProductResponse>> GetAllAsync()
+    {
+        throw new NotImplementedException();
+    }
 }

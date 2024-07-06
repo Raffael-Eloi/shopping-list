@@ -112,4 +112,34 @@ internal class GetProductShould
 
         #endregion
     }
+
+    [Test]
+    public async Task Get_All_Products()
+    {
+        #region Arrange(Given)
+
+        IEnumerable<Product> products =
+        [
+            new Product(),
+            new Product(),
+            new Product(),
+        ];
+
+        A.CallTo(() => repositoryMock.GetAll())
+            .Returns(products);
+
+        #endregion
+
+        #region Act(When)
+
+        IEnumerable<GetProductResponse> response = await getProduct.GetAllAsync();
+
+        #endregion
+
+        #region Assert(Then)
+
+        response.Count().Should().Be(3);
+
+        #endregion
+    }
 }
