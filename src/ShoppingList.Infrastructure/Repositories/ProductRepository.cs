@@ -18,4 +18,11 @@ public class ProductRepository(ProductContext context) : IProductRepository
             .Find(payment => payment.Id == id)
             .FirstOrDefaultAsync();
     }
+
+    public Task<IEnumerable<Product>> GetAll()
+    {
+        return Task.FromResult(
+            context.Products.Find(_ => true).ToEnumerable()
+        );
+    }
 }

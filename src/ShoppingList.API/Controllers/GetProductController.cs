@@ -30,4 +30,18 @@ public class GetProductController(IGetProduct getProduct) : ControllerBase
 
         return Ok(response);
     }
+    
+    [HttpGet("all", Name = "GetAllProducts")]
+    [SwaggerOperation(
+        Summary = "Get all products",
+        Description = "Get all the products.")]
+    [ProducesResponseType(typeof(GetProductResponse),
+        StatusCodes.Status200OK)]
+    [ProducesDefaultResponseType]
+    public async Task<ActionResult> GetAllProducts()
+    {
+        IEnumerable<GetProductResponse> products = await getProduct.GetAllAsync();
+
+        return Ok(products);
+    }
 }
