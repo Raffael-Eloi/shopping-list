@@ -24,7 +24,10 @@ Welcome to the Shopping List API! This .NET-based API provides a comprehensive s
 - **FluentAssertions**: For writing readable and maintainable test assertions.
 - **MailKit**: For handling email functionalities (IMAP, POP3, SMTP).
 - **Autofac**: For managing dependency injection with Inversion of Control (IoC).
-  
+
+## CI-CD Flow 🔁
+![image](https://github.com/Raffael-Eloi/shopping-list/assets/51720161/bba35495-618e-4cfe-86aa-41a75b326027)
+
 ## Event Storming 💡
 You can access <a href="https://miro.com/app/board/uXjVNdfSw8k=/?share_link_id=981039779858" target="_blank">here</a>.
 
