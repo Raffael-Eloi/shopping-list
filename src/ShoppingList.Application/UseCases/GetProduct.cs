@@ -51,8 +51,10 @@ public class GetProduct(
         return mapper.Map(product!);
     }
 
-    public Task<IEnumerable<GetProductResponse>> GetAllAsync()
+    public async Task<IEnumerable<GetProductResponse>> GetAllAsync()
     {
-        throw new NotImplementedException();
+        IEnumerable<Product> products = await repository.GetAll();
+
+        return products.Select(Map);
     }
 }
