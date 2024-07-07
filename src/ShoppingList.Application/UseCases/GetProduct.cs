@@ -52,9 +52,12 @@ public class GetProduct(
         return mapper.Map(product!);
     }
 
-    public Task<IEnumerable<GetProductResponse>> GetAsync(GetProductFilter filter)
+    public async Task<IEnumerable<GetProductResponse>> GetAsync(GetProductFilter filter)
     {
-        throw new NotImplementedException();
+        IEnumerable<Product> products = await repository.Get(filter);
+
+        return products.Select(Map);
+
     }
 
     public async Task<IEnumerable<GetProductResponse>> GetAllAsync()
