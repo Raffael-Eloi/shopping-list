@@ -117,6 +117,7 @@ jobs:
 
       - name: Replace variables in Kubernetes manifest
         run: |
+          echo $DATETIME
           cd kubernetes
           
           sed -i 's|${DOCKER_IMAGE}|'"${{ secrets.DOCKER_USERNAME }}/shopping-list-api:$DATETIME"'|g' deployment.yaml
