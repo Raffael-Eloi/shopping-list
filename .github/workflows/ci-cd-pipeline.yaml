@@ -53,90 +53,105 @@ jobs:
         cd tests
         cd ShoppingList.Application.Tetsts
         dotnet test 
-  
-  integrationTests:
-    name: Integration Tests
-    runs-on: ubuntu-latest
-    needs: tests
-
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-
-    - name: App Settings Variable Substitution        
-      run: |
-        cd src
-        cd ShoppingList.API
-
-        sed -i 's|${SHOPPING_LIST_DB_USER}|'"$SHOPPING_LIST_DB_USER"'|g' appsettings.json
-        sed -i 's|${SHOPPING_LIST_DB_PASSWORD}|'"$SHOPPING_LIST_DB_PASSWORD"'|g' appsettings.json
-        sed -i 's|${RAFFA_LAB_DB_CLUSTER_ADDRESS}|'"$RAFFA_LAB_DB_CLUSTER_ADDRESS"'|g' appsettings.json
-        sed -i 's|${RAFFA_LAB_DB_CLUSTER_NAME}|'"$RAFFA_LAB_DB_CLUSTER_NAME"'|g' appsettings.json
-      
-    - name: Behavior Tests
-      run: |
-        cd tests
-        cd ShoppingList.Behavior.Tests
-        dotnet test
-
-  publishImage:
-    name: Publish Docker Image
-    runs-on: ubuntu-latest
-    needs: integrationTests
-
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-
-    - name: Login to Docker Hub
-      uses: docker/login-action@v3
+        
+    - name: Get current time
+      uses: josStorer/get-current-time@v2
+      id: current-time
       with:
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKERHUB_TOKEN }}
-
-    - name: Build Docker Image
-      run: docker build -t shopping-list-api .
-
-    - name: Tag Docker Image
-      run: docker tag shopping-list-api ${{ secrets.DOCKER_USERNAME }}/shopping-list-api
-
-    - name: Push Docker Image
-      run: docker push ${{ secrets.DOCKER_USERNAME }}/shopping-list-api
+        format: YYYYMMDD-HH
+        utcOffset: "+08:00"
+    - name: Use current time
+      env:
+          TIME: "${{ steps.current-time.outputs.time }}"
+          R_TIME: "${{ steps.current-time.outputs.readableTime }}"
+          F_TIME: "${{ steps.current-time.outputs.formattedTime }}"
+          YEAR: "${{ steps.current-time.outputs.year }}"
+          DAY: "${{ steps.current-time.outputs.day }}"
+      run: echo $TIME $R_TIME $F_TIME $YEAR $DAY
   
-  deploy:
-    name: Deploy to Kubernetes
-    runs-on: ubuntu-latest
-    needs: publishImage
+  # integrationTests:
+  #   name: Integration Tests
+  #   runs-on: ubuntu-latest
+  #   needs: tests
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+  #   steps:
+  #   - name: Checkout code
+  #     uses: actions/checkout@v4
 
-      - name: Replace variables in Kubernetes manifest
-        run: |
-          cd kubernetes
-          sed -i 's|${SHOPPING_LIST_DB_USER}|'"$SHOPPING_LIST_DB_USER"'|g' deployment.yaml
-          sed -i 's|${SHOPPING_LIST_DB_PASSWORD}|'"$SHOPPING_LIST_DB_PASSWORD"'|g' deployment.yaml
-          sed -i 's|${RAFFA_LAB_DB_CLUSTER_ADDRESS}|'"$RAFFA_LAB_DB_CLUSTER_ADDRESS"'|g' deployment.yaml
-          sed -i 's|${RAFFA_LAB_DB_CLUSTER_NAME}|'"$RAFFA_LAB_DB_CLUSTER_NAME"'|g' deployment.yaml
+  #   - name: App Settings Variable Substitution        
+  #     run: |
+  #       cd src
+  #       cd ShoppingList.API
+
+  #       sed -i 's|${SHOPPING_LIST_DB_USER}|'"$SHOPPING_LIST_DB_USER"'|g' appsettings.json
+  #       sed -i 's|${SHOPPING_LIST_DB_PASSWORD}|'"$SHOPPING_LIST_DB_PASSWORD"'|g' appsettings.json
+  #       sed -i 's|${RAFFA_LAB_DB_CLUSTER_ADDRESS}|'"$RAFFA_LAB_DB_CLUSTER_ADDRESS"'|g' appsettings.json
+  #       sed -i 's|${RAFFA_LAB_DB_CLUSTER_NAME}|'"$RAFFA_LAB_DB_CLUSTER_NAME"'|g' appsettings.json
       
-      - name: Azure login
-        uses: azure/login@v2
-        with:
-          client-id: ${{ secrets.AZURE_CLIENT_ID }}
-          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+  #   - name: Behavior Tests
+  #     run: |
+  #       cd tests
+  #       cd ShoppingList.Behavior.Tests
+  #       dotnet test
 
-      - uses: azure/k8s-set-context@v4
-        with:
-          method: kubeconfig
-          kubeconfig: ${{ secrets.KUBECONFIG }}
-          context: raffa-lab-cluster
+  # publishImage:
+  #   name: Publish Docker Image
+  #   runs-on: ubuntu-latest
+  #   needs: integrationTests
 
-      - name: Deploy to Kubernetes
-        uses: Azure/k8s-deploy@v5
-        with:
-          namespace: 'shopping-list-api-ns'
-          manifests: |
-              kubernetes/deployment.yaml
-              kubernetes/service.yaml
+  #   steps:
+  #   - name: Checkout code
+  #     uses: actions/checkout@v4
+
+  #   - name: Login to Docker Hub
+  #     uses: docker/login-action@v3
+  #     with:
+  #       username: ${{ secrets.DOCKER_USERNAME }}
+  #       password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+  #   - name: Build Docker Image
+  #     run: docker build -t shopping-list-api .
+
+  #   - name: Tag Docker Image
+  #     run: docker tag shopping-list-api ${{ secrets.DOCKER_USERNAME }}/shopping-list-api
+
+  #   - name: Push Docker Image
+  #     run: docker push ${{ secrets.DOCKER_USERNAME }}/shopping-list-api
+  
+  # deploy:
+  #   name: Deploy to Kubernetes
+  #   runs-on: ubuntu-latest
+  #   needs: publishImage
+
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v4
+
+  #     - name: Replace variables in Kubernetes manifest
+  #       run: |
+  #         cd kubernetes
+  #         sed -i 's|${SHOPPING_LIST_DB_USER}|'"$SHOPPING_LIST_DB_USER"'|g' deployment.yaml
+  #         sed -i 's|${SHOPPING_LIST_DB_PASSWORD}|'"$SHOPPING_LIST_DB_PASSWORD"'|g' deployment.yaml
+  #         sed -i 's|${RAFFA_LAB_DB_CLUSTER_ADDRESS}|'"$RAFFA_LAB_DB_CLUSTER_ADDRESS"'|g' deployment.yaml
+  #         sed -i 's|${RAFFA_LAB_DB_CLUSTER_NAME}|'"$RAFFA_LAB_DB_CLUSTER_NAME"'|g' deployment.yaml
+      
+  #     - name: Azure login
+  #       uses: azure/login@v2
+  #       with:
+  #         client-id: ${{ secrets.AZURE_CLIENT_ID }}
+  #         tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+  #         subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+  #     - uses: azure/k8s-set-context@v4
+  #       with:
+  #         method: kubeconfig
+  #         kubeconfig: ${{ secrets.KUBECONFIG }}
+  #         context: raffa-lab-cluster
+
+  #     - name: Deploy to Kubernetes
+  #       uses: Azure/k8s-deploy@v5
+  #       with:
+  #         namespace: 'shopping-list-api-ns'
+  #         manifests: |
+  #             kubernetes/deployment.yaml
+  #             kubernetes/service.yaml
