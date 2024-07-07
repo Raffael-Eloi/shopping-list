@@ -80,7 +80,7 @@ jobs:
       env:
           TIME2: "${{ steps.current-date-test.outputs.time }}"
       run: |
-          echo $TIME2 
+          echo $datetime 
 
   
   # integrationTests:
