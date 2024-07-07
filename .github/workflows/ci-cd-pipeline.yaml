@@ -44,6 +44,7 @@ jobs:
 
     - name: Domain Tests
       run: |
+        echo $TIME 
         cd tests
         cd ShoppingList.Domain.Tests    
         dotnet test 
