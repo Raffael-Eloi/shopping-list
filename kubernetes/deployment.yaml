@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: shopping-list-api
-        image: raffaeleloi/shopping-list-api:latest
+        image: ${DOCKER_IMAGE}
         env:
         - name: MongoDB__ConnectionURI
           value: mongodb+srv://${SHOPPING_LIST_DB_USER}:${SHOPPING_LIST_DB_PASSWORD}@${RAFFA_LAB_DB_CLUSTER_ADDRESS}/?retryWrites=true&w=majority&appName=${RAFFA_LAB_DB_CLUSTER_NAME}
