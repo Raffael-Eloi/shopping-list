@@ -79,8 +79,8 @@ jobs:
   #       cd ShoppingList.Behavior.Tests
   #       dotnet test
 
-  publishImage:
-    name: Publish Docker Image
+  deploy:
+    name: Deploy to Kubernetes
     runs-on: ubuntu-latest
     # needs: integrationTests
 
@@ -107,47 +107,38 @@ jobs:
 
     - name: Push Docker Image
       run: docker push ${{ secrets.DOCKER_USERNAME }}/shopping-list-api:$DATETIME
-  
-  deploy:
-    name: Deploy to Kubernetes
-    runs-on: ubuntu-latest
-    needs: publishImage
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+    - name: Replace variables in Kubernetes manifest
+      run: |
+        echo $DATETIME
+        cd kubernetes
+        
+        sed -i 's|${DOCKER_IMAGE}|'"${{ secrets.DOCKER_USERNAME }}/shopping-list-api:$DATETIME"'|g' deployment.yaml
 
-      - name: Replace variables in Kubernetes manifest
-        run: |
-          echo $DATETIME
-          cd kubernetes
-          
-          sed -i 's|${DOCKER_IMAGE}|'"${{ secrets.DOCKER_USERNAME }}/shopping-list-api:$DATETIME"'|g' deployment.yaml
+        sed -i 's|${SHOPPING_LIST_DB_USER}|'"$SHOPPING_LIST_DB_USER"'|g' deployment.yaml
+        sed -i 's|${SHOPPING_LIST_DB_PASSWORD}|'"$SHOPPING_LIST_DB_PASSWORD"'|g' deployment.yaml
+        sed -i 's|${RAFFA_LAB_DB_CLUSTER_ADDRESS}|'"$RAFFA_LAB_DB_CLUSTER_ADDRESS"'|g' deployment.yaml
+        sed -i 's|${RAFFA_LAB_DB_CLUSTER_NAME}|'"$RAFFA_LAB_DB_CLUSTER_NAME"'|g' deployment.yaml
 
-          sed -i 's|${SHOPPING_LIST_DB_USER}|'"$SHOPPING_LIST_DB_USER"'|g' deployment.yaml
-          sed -i 's|${SHOPPING_LIST_DB_PASSWORD}|'"$SHOPPING_LIST_DB_PASSWORD"'|g' deployment.yaml
-          sed -i 's|${RAFFA_LAB_DB_CLUSTER_ADDRESS}|'"$RAFFA_LAB_DB_CLUSTER_ADDRESS"'|g' deployment.yaml
-          sed -i 's|${RAFFA_LAB_DB_CLUSTER_NAME}|'"$RAFFA_LAB_DB_CLUSTER_NAME"'|g' deployment.yaml
+        cat deployment.yaml
+    
+    - name: Azure login
+      uses: azure/login@v2
+      with:
+        client-id: ${{ secrets.AZURE_CLIENT_ID }}
+        tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+        subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
-          cat deployment.yaml
-      
-      - name: Azure login
-        uses: azure/login@v2
-        with:
-          client-id: ${{ secrets.AZURE_CLIENT_ID }}
-          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+    - uses: azure/k8s-set-context@v4
+      with:
+        method: kubeconfig
+        kubeconfig: ${{ secrets.KUBECONFIG }}
+        context: raffa-lab-cluster
 
-      - uses: azure/k8s-set-context@v4
-        with:
-          method: kubeconfig
-          kubeconfig: ${{ secrets.KUBECONFIG }}
-          context: raffa-lab-cluster
-
-      - name: Deploy to Kubernetes
-        uses: Azure/k8s-deploy@v5
-        with:
-          namespace: 'shopping-list-api-ns'
-          manifests: |
-              kubernetes/deployment.yaml
-              kubernetes/service.yaml
+    - name: Deploy to Kubernetes
+      uses: Azure/k8s-deploy@v5
+      with:
+        namespace: 'shopping-list-api-ns'
+        manifests: |
+            kubernetes/deployment.yaml
+            kubernetes/service.yaml
