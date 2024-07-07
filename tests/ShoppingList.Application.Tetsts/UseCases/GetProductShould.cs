@@ -176,4 +176,37 @@ internal class GetProductShould
 
         #endregion
     }
+    
+    [Test]
+    public async Task Get_Filtered_By_Description()
+    {
+        #region Arrange(Given)
+
+        string description = "16GB RAM";
+
+        var filter = new GetProductFilter
+        {
+            Description = description,
+        };
+
+        #endregion
+
+        #region Act(When)
+
+        await getProduct.GetAsync(filter);
+
+        #endregion
+
+        #region Assert(Then)
+
+        A.CallTo(() => 
+            repositoryMock.Get(
+                A<GetProductFilter>.That.Matches(
+                    getFilter => 
+                        getFilter.Description == description
+                )))
+        .MustHaveHappenedOnceExactly();
+
+        #endregion
+    }
 }
