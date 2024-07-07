@@ -6,6 +6,7 @@ using ShoppingList.Application.Contracts.Validators;
 using ShoppingList.Application.Models;
 using ShoppingList.Domain.Contracts.Repositories;
 using ShoppingList.Domain.Entities;
+using ShoppingList.Domain.Models;
 
 namespace ShoppingList.Application.UseCases;
 
@@ -49,6 +50,11 @@ public class GetProduct(
     private GetProductResponse Map(Product? product)
     {
         return mapper.Map(product!);
+    }
+
+    public Task<IEnumerable<GetProductResponse>> GetAsync(GetProductFilter filter)
+    {
+        throw new NotImplementedException();
     }
 
     public async Task<IEnumerable<GetProductResponse>> GetAllAsync()

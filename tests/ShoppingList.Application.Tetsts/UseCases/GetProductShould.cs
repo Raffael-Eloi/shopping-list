@@ -8,6 +8,7 @@ using ShoppingList.Application.Models;
 using ShoppingList.Application.UseCases;
 using ShoppingList.Domain.Contracts.Repositories;
 using ShoppingList.Domain.Entities;
+using ShoppingList.Domain.Models;
 
 namespace ShoppingList.Application.Tetsts.UseCases;
 
@@ -139,6 +140,39 @@ internal class GetProductShould
         #region Assert(Then)
 
         response.Count().Should().Be(3);
+
+        #endregion
+    }
+    
+    [Test]
+    public async Task Get_Filtered_By_Name()
+    {
+        #region Arrange(Given)
+
+        string name = "Notebook";
+
+        var filter = new GetProductFilter
+        {
+            Name = name,
+        };
+
+        #endregion
+
+        #region Act(When)
+
+        await getProduct.GetAsync(filter);
+
+        #endregion
+
+        #region Assert(Then)
+
+        A.CallTo(() => 
+            repositoryMock.Get(
+                A<GetProductFilter>.That.Matches(
+                    getFilter => 
+                        getFilter.Name == name
+                )))
+        .MustHaveHappenedOnceExactly();
 
         #endregion
     }
