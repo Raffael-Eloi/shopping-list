@@ -100,6 +100,7 @@ jobs:
         TAG_IMAGE: "${{ steps.build-image.outputs.time }}"
         DOCKER_IMAGE: ${{ secrets.DOCKER_USERNAME }}/shopping-list-api:$TAG_IMAGE
       run: |
+        echo $datetime 
         echo $TAG_IMAGE
         echo $DOCKER_IMAGE
         docker build -t $DOCKER_IMAGE .
