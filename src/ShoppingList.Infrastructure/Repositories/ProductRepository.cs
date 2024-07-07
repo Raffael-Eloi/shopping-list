@@ -20,9 +20,25 @@ public class ProductRepository(ProductContext context) : IProductRepository
             .FirstOrDefaultAsync();
     }
 
-    public Task<IEnumerable<Product>> Get(GetProductFilter filter)
+    public async Task<IEnumerable<Product>> Get(GetProductFilter filter)
     {
-        throw new NotImplementedException();
+        IEnumerable<Product> products = [];
+
+        if (filter.Name is not null)
+        {
+            products = await context.Products
+            .Find(product => product.Name.ToLower().Contains(filter.Name.ToLower()))
+            .ToListAsync();
+        }
+        
+        if (filter.Description is not null)
+        {
+            products = await context.Products
+            .Find(product => product.Description.ToLower().Contains(filter.Description.ToLower()))
+            .ToListAsync();
+        }
+
+        return products;
     }
 
     public Task<IEnumerable<Product>> GetAll()
