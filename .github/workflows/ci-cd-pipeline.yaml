@@ -97,6 +97,8 @@ jobs:
     - name: Get current datetime
       id: DATETIME
       run: echo "DATETIME=$(TZ=America/Sao_Paulo date +'%Y-%m-%dT%Hh%Mm%S%z')" >> $GITHUB_ENV
+      env:
+        DATETIME: $DATETIME
 
     - name: Build Docker Image
       run: |
