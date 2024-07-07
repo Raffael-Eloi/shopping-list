@@ -59,7 +59,7 @@ jobs:
       id: current-time
       with:
         format: YYYYMMDD-HH
-        utcOffset: "+08:00"
+        utcOffset: "-03:00"
     - name: Use current time
       env:
           TIME: "${{ steps.current-time.outputs.time }}"
@@ -69,10 +69,6 @@ jobs:
           DAY: "${{ steps.current-time.outputs.day }}"
       run: |
           echo $TIME 
-          echo $R_TIME 
-          echo $F_TIME 
-          echo $YEAR 
-          echo $DAY
   
   # integrationTests:
   #   name: Integration Tests
