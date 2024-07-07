@@ -96,13 +96,15 @@ jobs:
     
     - name: Get current datetime
       id: current-datetime
-      run: echo "current-datetime=$(TZ=America/Sao_Paulo date +'%Y-%m-%dT%H:%M:%S%z')" >> $GITHUB_ENV
+      env:
+        CURRENT_DATETIME2: $(TZ=America/Sao_Paulo date +'%Y-%m-%dT%H:%M:%S%z')
+      run: echo $CURRENT_DATETIME2
 
     - name: Build Docker Image
       id: build-image
       env:
         TAG_IMAGE: "${{ steps.build-image.outputs.time }}"
-        DOCKER_IMAGE: ${{ secrets.DOCKER_USERNAME }}/shopping-list-api:$TAG_IMAGE
+        DOCKER_IMAGE: ${{ secrets.DOCKER_USERNAME }}/shopping-list-api:$current-datetime
       run: |
         echo $current-datetime 
         echo $TAG_IMAGE
