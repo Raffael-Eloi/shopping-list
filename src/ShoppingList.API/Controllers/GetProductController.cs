@@ -2,6 +2,7 @@
 using ShoppingList.API.Extensions;
 using ShoppingList.Application.Contracts.UseCases;
 using ShoppingList.Application.Models;
+using ShoppingList.Domain.Models;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace ShoppingList.API.Controllers;
@@ -30,7 +31,21 @@ public class GetProductController(IGetProduct getProduct) : ControllerBase
 
         return Ok(response);
     }
-    
+
+    [HttpGet(Name = "GetProducts")]
+    [SwaggerOperation(
+        Summary = "Get products with filter",
+        Description = "Get all the products according to defined filter.")]
+    [ProducesResponseType(typeof(GetProductResponse),
+        StatusCodes.Status200OK)]
+    [ProducesDefaultResponseType]
+    public async Task<ActionResult> GetProducts([FromQuery] GetProductFilter filter)
+    {
+        IEnumerable<GetProductResponse> products = await getProduct.GetAsync(filter);
+
+        return Ok(products);
+    }
+
     [HttpGet("all", Name = "GetAllProducts")]
     [SwaggerOperation(
         Summary = "Get all products",
