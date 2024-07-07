@@ -1,6 +1,7 @@
 ﻿using MongoDB.Driver;
 using ShoppingList.Domain.Contracts.Repositories;
 using ShoppingList.Domain.Entities;
+using ShoppingList.Domain.Models;
 using ShoppingList.Infrastructure.Database.Contexts;
 
 namespace ShoppingList.Infrastructure.Repositories;
@@ -17,6 +18,11 @@ public class ProductRepository(ProductContext context) : IProductRepository
         return await context.Products
             .Find(payment => payment.Id == id)
             .FirstOrDefaultAsync();
+    }
+
+    public Task<IEnumerable<Product>> Get(GetProductFilter filter)
+    {
+        throw new NotImplementedException();
     }
 
     public Task<IEnumerable<Product>> GetAll()

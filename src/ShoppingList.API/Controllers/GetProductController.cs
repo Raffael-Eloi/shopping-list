@@ -36,7 +36,7 @@ public class GetProductController(IGetProduct getProduct) : ControllerBase
     [SwaggerOperation(
         Summary = "Get products with filter",
         Description = "Get all the products according to defined filter.")]
-    [ProducesResponseType(typeof(GetProductResponse),
+    [ProducesResponseType(typeof(IEnumerable<GetProductResponse>),
         StatusCodes.Status200OK)]
     [ProducesDefaultResponseType]
     public async Task<ActionResult> GetProducts([FromQuery] GetProductFilter filter)
@@ -50,7 +50,7 @@ public class GetProductController(IGetProduct getProduct) : ControllerBase
     [SwaggerOperation(
         Summary = "Get all products",
         Description = "Get all the products.")]
-    [ProducesResponseType(typeof(GetProductResponse),
+    [ProducesResponseType(typeof(IEnumerable<GetProductResponse>),
         StatusCodes.Status200OK)]
     [ProducesDefaultResponseType]
     public async Task<ActionResult> GetAllProducts()

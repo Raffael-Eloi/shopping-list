@@ -9,7 +9,7 @@ public interface IProductRepository
 
     Task<Product?> GetById(Guid id);
 
-    Task<IEnumerable<Product>> GetAll();
-
     Task<IEnumerable<Product>> Get(GetProductFilter filter);
+
+    Task<IEnumerable<Product>> GetAll();
 }
