@@ -60,7 +60,7 @@ jobs:
       id: current-time
       with:
         format: YYYYMMDD-HH
-        utcOffset: "-03:00"
+        utcOffset: "+03:00"
     - name: Use current time
       env:
           TIME: "${{ steps.current-time.outputs.time }}"
@@ -74,6 +74,13 @@ jobs:
     - name: Get current datetime in São Paulo
       id: datetime
       run: echo "datetime=$(TZ=America/Sao_Paulo date +'%Y-%m-%dT%H:%M:%S%z')" >> $GITHUB_ENV
+      
+    - name: Another test current datetime
+      id: current-date-test
+      env:
+          TIME2: "${{ steps.current-date-test.outputs.time }}"
+      run: |
+          echo $TIME2 
 
   
   # integrationTests:
