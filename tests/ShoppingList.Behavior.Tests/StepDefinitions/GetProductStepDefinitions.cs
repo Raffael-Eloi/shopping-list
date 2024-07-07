@@ -1,3 +1,4 @@
+using System.Xml.Linq;
 using TechTalk.SpecFlow.Assist;
 
 namespace ShoppingList.Behavior.Tests.StepDefinitions;
@@ -35,5 +36,27 @@ public class GetProductStepDefinitions(
         products.Should().NotBeNullOrEmpty();
 
         products.Should().OnlyContain(product => product.Name.Contains(filteredName));
+    }
+
+    [When(@"I get the products filtered by description ""([^""]*)""")]
+    public async Task WhenIGetTheProductsFilteredByDescription(string description)
+    {
+        context["filteredDescription"] = description;
+
+        IEnumerable<GetProductResponse> products = await client.GetProductsAsync(null, description);
+
+        context.Set(products);
+    }
+
+    [Then(@"the the products should only have the filtered description")]
+    public void ThenTheTheProductsShouldOnlyHaveTheFilteredDescription()
+    {
+        IEnumerable<GetProductResponse> products = context.Get<IEnumerable<GetProductResponse>>();
+
+        string filteredDescription = context.Get<string>("filteredDescription");
+
+        products.Should().NotBeNullOrEmpty();
+
+        products.Should().OnlyContain(product => product.Description.Contains(filteredDescription));
     }
 }
