@@ -95,6 +95,7 @@ jobs:
         password: ${{ secrets.DOCKERHUB_TOKEN }}
     
     - name: Build Docker Image
+      id: DATETIME
       run: |
         echo "DATETIME=$(TZ=America/Sao_Paulo date +'%Y-%m-%dT%H:%M:%S%z')" >> $GITHUB_ENV
         echo ${{ secrets.DOCKER_USERNAME }}/shopping-list-api:$DATETIME
