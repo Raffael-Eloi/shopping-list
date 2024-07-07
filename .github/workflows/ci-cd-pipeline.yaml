@@ -105,7 +105,7 @@ jobs:
         docker build -t ${{ secrets.DOCKER_USERNAME }}/shopping-list-api:$DATETIME .
 
     - name: Push Docker Image
-      run: docker push $DOCKER_IMAGE
+      run: docker push ${{ secrets.DOCKER_USERNAME }}/shopping-list-api:$DATETIME
   
   # deploy:
   #   name: Deploy to Kubernetes
