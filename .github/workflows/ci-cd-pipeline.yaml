@@ -125,6 +125,8 @@ jobs:
           sed -i 's|${SHOPPING_LIST_DB_PASSWORD}|'"$SHOPPING_LIST_DB_PASSWORD"'|g' deployment.yaml
           sed -i 's|${RAFFA_LAB_DB_CLUSTER_ADDRESS}|'"$RAFFA_LAB_DB_CLUSTER_ADDRESS"'|g' deployment.yaml
           sed -i 's|${RAFFA_LAB_DB_CLUSTER_NAME}|'"$RAFFA_LAB_DB_CLUSTER_NAME"'|g' deployment.yaml
+
+          cat deployment.yaml
       
       - name: Azure login
         uses: azure/login@v2
