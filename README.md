@@ -28,6 +28,12 @@ Welcome to the Shopping List API! This .NET-based API provides a comprehensive s
 ## CI-CD Flow 🔁
 ![image](https://github.com/Raffael-Eloi/shopping-list/assets/51720161/bba35495-618e-4cfe-86aa-41a75b326027)
 
+## Technologies and Concepts 💻
+- **.NET 8 API:** Modern and efficient API development.
+- **Test-Driven Development (TDD):** Ensures code reliability through comprehensive unit tests.
+- **Behavior-Driven Development (BDD):** Facilitates integration testing with SpecFlow.
+- **SOLID Principles:** Promotes clean and maintainable code architecture.
+  
 ## Event Storming 💡
 You can access <a href="https://miro.com/app/board/uXjVNdfSw8k=/?share_link_id=981039779858" target="_blank">here</a>.
 
